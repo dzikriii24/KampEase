@@ -20,42 +20,6 @@
                 iconAnchor: [12, 25],
                 popupAnchor: [0, -25]
             }),
-            perpustakaan: L.icon({
-                iconUrl: '../images/icons/book-alt.png',
-                iconSize: [20, 20],
-                iconAnchor: [12, 25],
-                popupAnchor: [0, -25]
-            }),
-            atk: L.icon({
-                iconUrl: '../images/icons/document.png',
-                iconSize: [20, 20],
-                iconAnchor: [12, 25],
-                popupAnchor: [0, -25]
-            }),
-            kantin: L.icon({
-                iconUrl: '../images/icons/restaurant.png',
-                iconSize: [20, 20],
-                iconAnchor: [12, 25],
-                popupAnchor: [0, -25]
-            }),
-            mini_market: L.icon({
-                iconUrl: '../images/icons/shop.png',
-                iconSize: [20, 20],
-                iconAnchor: [12, 25],
-                popupAnchor: [0, -25]
-            }),
-            mushalla: L.icon({
-                iconUrl: '../images/icons/mosque.png',
-                iconSize: [20, 20],
-                iconAnchor: [12, 25],
-                popupAnchor: [0, -25]
-            }),
-            wifi: L.icon({
-                iconUrl: '../images/icons/iconWifi.png',
-                iconSize: [20, 20],
-                iconAnchor: [12, 25],
-                popupAnchor: [0, -25]
-            }),
         };
 
 
@@ -179,77 +143,6 @@
                 
             </div>
 
- 
-        </div>
-    </a>
-            `
-                    });
-                });
-            });
-
-        fetch("wifi.php")
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(wifi => {
-                    const marker = L.marker([wifi.koordinat_lat, wifi.koordinat_lng], {
-                        icon: icons.wifi
-                    }).addTo(map);
-
-                    // Tambahkan tooltip saat hover
-                    marker.bindTooltip(
-                        `<div class="tooltip rounded-xl" data-tip="${wifi.nama_wifi}">Wifi Spot<br/>${wifi.nama_wifi}</div>`, {
-                            direction: 'top',
-                            permanent: false,
-                            className: 'custom-tooltip',
-                            sticky: true,
-                            opacity: 0.6
-                        }
-                    );
-                    marker.on("click", () => {
-                        document.getElementById("info-panel").innerHTML = `
-
-                            <a href="#" class="block rounded-lg p-4">
-        <img
-            style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"
-            alt=""
-            src="${wifi.foto}"
-            class="h-56 w-full rounded-md object-cover" />
-
-        <div class="mt-2 rounded-lg p-4 poppins-regular" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
-            <dl>
-                <div>
-                    <dd class="font-medium">${wifi.nama_wifi}</dd>
-                </div>
-                <div>
-                    <p class="text-[12px] text-gray-500 w-full">Koordinat</p>
-                    <p class="text-[12px] text-gray-500 w-full">-6.930474582399706, 107.71777771238854</p>
-                </div>
-            </dl>
-
-            <div class="mt-6 flex items-center gap-4 text-xs">
-                <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
-                    <div class="mt-1.5 sm:mt-0">
-                        <p class="text-[#1F2937]">Nama Wifi</p>
-
-                        <p class="font-lg nunito-regular text-gray-500">${wifi.nama_wifi}</p>
-                    </div>
-                </div>
-
-                
-            </div>
-            <div class="text-xs">
-
-                <p class="text-[#1F2937]">Password Wi-Fi</p>
-
-                <p class="font-lg nunito-regular text-gray-500">${wifi.password_wifi}</p>
-
-                <p class=""><a href='${wifi.link_maps}' class="text-blue-500 hover:text-blue-700 popins-regular">
-                    Pergi Sekarang
-                </a></p>
-
-                
-            </div>
-
 
         </div>
     </a>
@@ -257,6 +150,7 @@
                     });
                 });
             });
+
 
 
         // Maps Unlocked
