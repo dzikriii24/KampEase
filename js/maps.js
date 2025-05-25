@@ -1,6 +1,5 @@
         const graphhopperApiKey = 'f5f22686-c5f8-4f07-97b2-192a043ce751';
 
-
         const map = L.map('map').setView([-6.9311, 107.7175], 18);
 
         // Tracestrack Topo Tile
@@ -115,7 +114,7 @@
                     marker.on("click", () => {
                         document.getElementById("info-panel").innerHTML = `
 
-                            <a href="#" class="block rounded-lg p-4">
+                    
         <button onclick="foto.showModal()">
             <img  style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"
             alt=""
@@ -199,7 +198,7 @@
 
 
         </div>
-    </a>
+    
             `
                     });
                 });

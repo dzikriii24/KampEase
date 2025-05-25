@@ -58,7 +58,7 @@
             <p class="text-gray-700 sm:col-span-2 dark:text-gray-200">Mahasiswa Aktif</p>
         </div>
         <div class="flex-none mt-5">
-            <button onclick="my_modal_3.showModal()">
+            <button type="button" onclick="my_modal_3.showModal()">
                 <div class="avatar">
                     <div class="w-20 rounded-full">
                         <img src="https://i.pinimg.com/736x/45/d4/97/45d497e5ef0683b7c144183f079c1ca1.jpg" />
@@ -81,7 +81,7 @@
 
 
     <!-- block -->
-    
+
 
 
     <!-- Navbar Profile End -->
@@ -162,31 +162,119 @@
     <!-- Tentang Aplikasi End -->
 
     <!-- FAQ -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 px-4 mx-auto">
-        <div class="border-none collapse border">
-            <input type="checkbox" class="peer" />
-            <div
-                class="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
-                How do I create an account?
-            </div>
-            <div
-                class="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
-                Click the "Sign Up" button in the top right corner and follow the registration process.
-            </div>
-        </div>
 
-        <div class="border-none collapse border">
-            <input type="checkbox" class="peer" />
-            <div
-                class="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
-                How do I create an account?
+    <section class="overflow-hidden bg-white mt-10">
+        <div class="grid grid-cols-1 sm:grid-cols-2">
+
+            <!-- Right Side: Accordion -->
+            <div class="p-6 sm:p-10 bg-white">
+                <div class="space-y-4 max-w-xl mx-auto">
+
+                    <!-- Item 1 -->
+                    <div class="border border-purple-300 rounded-lg overflow-hidden">
+                        <input type="checkbox" class="peer hidden" id="faq1" />
+
+                        <label for="faq1"
+                            class="block cursor-pointer bg-purple-100 text-purple-800 font-semibold px-4 py-3 peer-checked:bg-purple-200 transition">
+                            Bagaimana cara membuat akun?
+                        </label>
+
+                        <div class="max-h-0 peer-checked:max-h-40 overflow-hidden transition-all duration-500 bg-white">
+                            <div class="px-4 py-2 text-gray-700">
+                                Klik tombol "Sign Up" di pojok kanan atas dan ikuti proses pendaftaran yang tersedia.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="border border-purple-300 rounded-lg overflow-hidden">
+                        <input type="checkbox" class="peer hidden" id="faq2" />
+                        <label for="faq2"
+                            class="block cursor-pointer bg-purple-100 text-purple-800 font-semibold px-4 py-3 peer-checked:bg-purple-200 transition">
+                            Apakah saya bisa mengganti password?
+                        </label>
+                        <div class="max-h-0 peer-checked:max-h-40 overflow-hidden transition-all duration-500 bg-white">
+                            <div class="px-4 py-2 text-gray-700">
+                                Klik tombol "Sign Up" di pojok kanan atas dan ikuti proses pendaftaran yang tersedia.
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-            <div
-                class="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
-                Click the "Sign Up" button in the top right corner and follow the registration process.
+            <!-- Left Side: Text -->
+            <div class="p-8 md:p-12 lg:px-16 lg:py-24 bg-[#f5f3ff]">
+                <div class="mx-auto max-w-xl text-center sm:text-left">
+                    <h2 class="text-3xl font-bold text-purple-800">FAQ</h2>
+                    <p class="text-gray-600 mt-4">
+                        Temukan jawaban dari pertanyaan yang sering diajukan mengenai layanan dan fitur yang kami sediakan.
+                    </p>
+                    <div class="max-w-xl mx-auto bg-white border border-purple-200 rounded-xl shadow-lg p-6 space-y-4">
+                        <!-- Judul -->
+                        <h2 class="text-xl font-semibold text-purple-800">Tinggalkan Komentar</h2>
+
+                        <!-- Rating Bintang -->
+                        <div id="rating-stars" class="flex gap-1 text-2xl text-gray-300">
+                            <button type="button" data-value="1" class="star">★</button>
+                            <button type="button" data-value="2" class="star">★</button>
+                            <button type="button" data-value="3" class="star">★</button>
+                            <button type="button" data-value="4" class="star">★</button>
+                            <button type="button" data-value="5" class="star">★</button>
+                        </div>
+
+                        <!-- Form Komentar -->
+                        <form class="space-y-3">
+                            <label for="komentar" class="block text-sm font-medium text-gray-700">
+                                Pesan atau pertanyaan untuk Kampease
+                            </label>
+                            <div class="relative overflow-hidden rounded border border-purple-300 focus-within:ring-2 focus-within:ring-purple-400">
+                                <textarea id="komentar" rows="4"
+                                    class="w-full resize-none border-none p-3 text-sm focus:ring-0 focus:outline-none placeholder:text-gray-400"
+                                    placeholder="Tulis komentar Anda di sini..."></textarea>
+                                <div class="flex items-center justify-end gap-2 p-2 bg-white border-t border-purple-100">
+                                    <button type="button"
+                                        onclick="document.getElementById('komentar').value = ''"
+                                        class="rounded px-4 py-1.5 text-sm font-medium text-gray-600 hover:text-gray-800 transition-colors">
+                                        Clear
+                                    </button>
+                                    <button type="submit"
+                                        class="rounded bg-purple-600 px-4 py-1.5 text-sm font-medium text-white hover:bg-purple-700 transition">
+                                        Kirim
+                                    </button>
+                                </div>
+                            </div>
+                            <input type="hidden" name="rating" id="rating-value" />
+                        </form>
+                    </div>
+                    <script>
+                        const stars = document.querySelectorAll('.star');
+                        const ratingValue = document.getElementById('rating-value');
+
+                        stars.forEach((star, index) => {
+                            star.addEventListener('click', () => {
+                                const selectedRating = parseInt(star.getAttribute('data-value'));
+                                ratingValue.value = selectedRating;
+
+                                stars.forEach((s, i) => {
+                                    if (i < selectedRating) {
+                                        s.classList.add('text-yellow-400');
+                                        s.classList.remove('text-gray-300');
+                                    } else {
+                                        s.classList.add('text-gray-300');
+                                        s.classList.remove('text-yellow-400');
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+                </div>
             </div>
+
+
         </div>
-    </div>
+    </section>
+
+
 
     <!-- FAQ -->
 
@@ -223,6 +311,9 @@
     </div>
     <!-- FIXED END -->
 
+    <br>
+    <br>
+    <br>
 
     <script src="js/chatbot.js"></script>
     <script src="../js/other.js"></script>
