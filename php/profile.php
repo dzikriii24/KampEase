@@ -108,7 +108,7 @@
 
             <div class="card-body">
                 <h2 class="card-title">Tempat Favorit Kamu</h2>
-                <p>Click the button to watch on Jetflix app.</p>
+                <p>test github.</p>
                 <div class="card-actions justify-end">
                     <button class="btn btn-primary">Lihat</button>
                 </div>
