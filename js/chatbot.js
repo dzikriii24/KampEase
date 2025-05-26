@@ -30,10 +30,10 @@
                 // thanks yaa! semangatt. kalo strugle bisa tanya jipiti kalo ga tanya kita aja, wkwkw
                 if (userText.includes('wifi')) {
                     botReply = 'Kamu bisa menemukan WiFi gratis di sekitar kantin kampus dan perpustakaan.';
-                } else if (userText.includes('lokasi')) {
-                    botReply = 'Silakan aktifkan GPS kamu, lalu klik tombol "Temukan Lokasi Saya" di halaman utama.';
-                } else if (userText.includes('buka jam berapa')) {
-                    botReply = 'Kami buka setiap hari pukul 08.00 - 17.00 WIB.';
+                } else if (userText.includes('lc')) {
+                    botReply = 'buka setiap hari jam 10';
+                } else if (userText.includes('dimana')|| userText.includes('fst')) {
+                    botReply = 'fst itu ada di lantai 2 gedung utama, dekat dengan perpustakaan.';
                 } else if (userText.includes('dimana')) {
                     botReply = 'Silahkan anda masukan lokasi di keyboard anda.';
                 }
