@@ -5,6 +5,7 @@
         scroll-behavior: smooth;
     }
 </style>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -165,7 +166,7 @@
 
                 <div class="p-4 sm:p-6">
                     <h3 class="sm:text-lg text-sm font-medium text-center text-[#1F2937]">
-                    Area Parkir
+                        Area Parkir
                     </h3>
                 </div>
             </article>
@@ -179,7 +180,7 @@
 
                 <div class="p-4 sm:p-6">
                     <h3 class="sm:text-lg text-sm font-medium text-center text-[#1F2937]">
-                    Semua Area
+                        Semua Area
                     </h3>
                 </div>
             </article>
@@ -378,7 +379,13 @@
                 </p>
             </div>
         </article>
-
+    </div>
+    <div
+        class="mt-10">
+        <p class="text-center font-medium">
+            Lihat Semua Komentar
+            <a href="php/komentar.php" class="inline-block underline"> Disini </a>
+        </p>
     </div>
 
     <!-- Testimoni End -->
@@ -468,7 +475,7 @@
     </div>
     <!-- FIXED MENU END -->
 
-<script src="js/chatbot.js"></script>
+    <script src="js/chatbot.js"></script>
 
 </body>
 

@@ -190,7 +190,7 @@
                         Pergi Sekarang
                     </a></p>
 
-                <p class="mt-2"><a href='../php/saintek.php' class="text-blue-500 hover:text-blue-700 popins-regular">
+                <p class="mt-2"><a href='${gedung.link_detail}' class="text-blue-500 hover:text-blue-700 popins-regular">
                         Lihat Detail Gedung
                     </a></p>
 

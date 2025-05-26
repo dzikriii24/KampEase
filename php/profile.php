@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="css/hover.css">
 </head>
 
-<body class="min-h-screen flex flex-col justify-start">
+<body class="min-h-screen flex flex-col justify-start overflow-x-hidden">
 
     <!-- kalo belum login bikin tampilan ajakan untuk login -->
     <!-- CTAS -->
@@ -119,20 +119,22 @@
     <!-- Favorit Places End -->
     <!-- Pengaturan Akun -->
     <div>
-        <div
-            class="flex items-center justify-between bg-[#7C3AED] dark:bg-[#7C3AED] p-4 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 text-white mb-4 mx-4">
-            <a href="#" class="text-base font-semibold text-gray-800 dark:text-gray-100">Pengaturan</a>
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white dark:text-white" fill="currentColor"
-                viewBox="0 0 16 16">
-                <path
-                    d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
-            </svg>
-        </div>
+        <a href="pengaturan.php"
+            class="block bg-[#7C3AED] dark:bg-[#7C3AED] p-4 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 text-white mb-4 mx-4">
+            <div class="flex items-center justify-between">
+                <span class="text-base font-semibold text-white dark:text-white">Pengaturan</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white dark:text-white" fill="currentColor"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
+                </svg>
+            </div>
+        </a>
+
 
         <div class="grid grid-cols-2">
-            <button
-                class="flex items-center justify-between bg-[#7C3AED] dark:bg-[#7C3AED] p-4 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 text-white mb-4 mx-4">
-                <a href="#" class="text-base font-semibold text-gray-800 dark:text-gray-100">Log Out</a>
+            <a href="logout.php" class="flex items-center justify-between bg-[#7C3AED] dark:bg-[#7C3AED] p-4 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 text-white mb-4 mx-4">
+                <span class="text-base font-semibold text-gray-800 dark:text-gray-100">Log Out</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                     class="bi bi-box-arrow-left" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -140,16 +142,15 @@
                     <path fill-rule="evenodd"
                         d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z" />
                 </svg>
-            </button>
-            <button
-                class="flex items-center justify-between bg-[#7C3AED] dark:bg-[#7C3AED] p-4 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 text-white mb-4 mx-4">
-                <a href="#" class="text-base font-semibold text-gray-800 dark:text-gray-100">3</a>
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-white dark:text-white" fill="currentColor"
-                    viewBox="0 0 16 16">
-                    <path
-                        d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
+            </a>
+
+            <a href="logout.php" class="flex items-center justify-between bg-[#7C3AED] dark:bg-[#7C3AED] p-4 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 text-white mb-4 mx-4">
+                <span class="text-base font-semibold text-gray-800 dark:text-gray-100">Tentang Kami</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
+                    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0" />
                 </svg>
-            </button>
+            </a>
         </div>
     </div>
 
@@ -206,7 +207,7 @@
             <div class="p-8 md:p-12 lg:px-16 lg:py-24 bg-[#f5f3ff]">
                 <div class="mx-auto max-w-xl text-center sm:text-left">
                     <h2 class="text-3xl font-bold text-purple-800">FAQ</h2>
-                    <p class="text-gray-600 mt-4">
+                    <p class="text-gray-600 mt-4 mb-2">
                         Temukan jawaban dari pertanyaan yang sering diajukan mengenai layanan dan fitur yang kami sediakan.
                     </p>
                     <div class="max-w-xl mx-auto bg-white border border-purple-200 rounded-xl shadow-lg p-6 space-y-4">
@@ -274,12 +275,38 @@
         </div>
     </section>
 
-
-
     <!-- FAQ -->
+    <!-- JIKA BELUM LOGIN -->
+    <section class="lg:grid lg:h-screen lg:place-content-center">
+        <div class="mx-auto w-screen max-w-screen-xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
+            <div class="mx-auto max-w-prose text-center">
+                <h1 class="text-4xl font-bold text-gray-800 sm:text-5xl">
+                    Jelajahi fitur dan
+                    <strong class="text-[#3B82F6]"> temukan lokasi </strong>
+                    dengan mudah
+                </h1>
 
-    <!-- Logout -->
-    <!-- Logout end -->
+                <p class="mt-4 text-base text-pretty text-gray-600 sm:text-lg/relaxed">
+                    Akses berbagai titik penting seperti gedung, Wi-Fi, dan fasilitas lainnya. Masuk untuk memulai pengalaman penuh dan fitur lengkap!
+                </p>
+
+                <div class="mt-6 flex justify-center gap-4">
+                    <a
+                        class="inline-block rounded-lg border border-[#3B82F6] bg-[#3B82F6] px-6 py-3 font-medium text-white shadow-sm transition-colors hover:bg-[#2563EB]"
+                        href="login.php">
+                        Masuk
+                    </a>
+
+                    <a
+                        class="inline-block rounded-lg border border-gray-300 px-6 py-3 font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900"
+                        href="register.php">
+                        Registrasi
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FIXED MENU -->
     <div
         class="z-40 dock text-[#1F2937]-content bg-[#DDD6FE]/70 rounded-tr-[90px] rounded-tl-[90px] sm:w-[400px] w-[388px] flex justify-center justify-self-center poppins-regular">
