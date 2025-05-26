@@ -43,6 +43,8 @@ CREATE TABLE `gedung` (
 -- Dumping data for table `gedung`
 --
 
+-- update foto
+
 INSERT INTO `gedung` (`id`, `nama_gedung`, `deskripsi`, `koordinat_lat`, `koordinat_lng`, `jumlah_lantai`, `link_maps`, `foto`, `operasional`) VALUES
 (1, 'FST', 'Fakultas Sains dan Teknologi, pusat kegiatan akademik dan laboratorium sains.', -6.9314905, 107.7182071, 4, 'https://maps.app.goo.gl/DNZ9sGi75ewJmiAT7', 'https://fst.uinsgd.ac.id/wp-content/uploads/2014/09/IMG_0119-600x349.jpg', '06.00-18.00'),
 (2, 'Language Center', 'Pusat pembelajaran bahasa dan pelatihan TOEFL/TOAFL.', -6.9314356, 107.7178081, 4, 'https://maps.app.goo.gl/i388jQJMYY4VPPJJ8', 'https://jurnalposmedia.com/wp-content/uploads/2019/05/Pusat-Pengembangan-Bahasa-UIN-Sunan-Gunung-Djati-Bandung-02.05.2019-1024x576.jpg', '06.00-18.00'),
@@ -62,7 +64,7 @@ INSERT INTO `gedung` (`id`, `nama_gedung`, `deskripsi`, `koordinat_lat`, `koordi
 (16, 'Mahad Pria', 'Asrama mahasiswa UIN Sunan Gunung Djati Bandung.', -6.9296573, 107.7188458, 4, 'https://maps.app.goo.gl/BrxsVfdao4SPqoQk6', '', '24 Jam'),
 (17, 'Mahad Wanita', 'Gedung Mahad tambahan atau asrama mahasiswa putri.', -6.9294013, 107.7184236, 4, 'https://maps.app.goo.gl/2p7TmFSZ6KJZ8BDz6', '', '24 Jam'),
 (18, 'Student Center (SC)', 'Pusat kegiatan mahasiswa, organisasi, dan UKM kampus.', -6.9295012, 107.7183311, 4, 'https://maps.app.goo.gl/dFxnv19v8TcktxcG7', '', '24 Jam'),
-(19, 'Gedung Syarkum', 'Gedung Fakultas Syariah dan Hukum (Syarkum).', -6.9306717, 107.7182409, 4, 'https://maps.app.goo.gl/AUtarkHsuZ6t5wPA6', '', '06.00-18.00');
+(19, 'Gedung Kuliah Syarkum', 'Gedung Fakultas Syariah dan Hukum (Syarkum).', -6.9306717, 107.7182409, 4, 'https://maps.app.goo.gl/AUtarkHsuZ6t5wPA6', 'https://id.pinterest.com/pin/716002040796289709/', '06.00-18.00');
 
 -- --------------------------------------------------------
 
