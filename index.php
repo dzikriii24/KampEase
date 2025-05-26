@@ -468,8 +468,7 @@
     </div>
     <!-- FIXED MENU END -->
 
-
-    <script src="js/chatbot.js"></script>
+<script src="js/chatbot.js"></script>
 
 </body>
 
