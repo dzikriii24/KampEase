@@ -34,6 +34,8 @@
                     botReply = 'Silakan aktifkan GPS kamu, lalu klik tombol "Temukan Lokasi Saya" di halaman utama.';
                 } else if (userText.includes('buka jam berapa')) {
                     botReply = 'Kami buka setiap hari pukul 08.00 - 17.00 WIB.';
+                } else if (userText.includes('dimana saya sekarang','dimana saya skrng?')){
+                    botReply = 'Silahkan anda masukan "lokasi" di keyboard anda';
                 }
 
                 setTimeout(() => {
