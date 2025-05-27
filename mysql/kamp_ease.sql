@@ -94,7 +94,7 @@ CREATE TABLE `gedung` (
 INSERT INTO `gedung` (`id`, `nama_gedung`, `deskripsi`, `koordinat_lat`, `koordinat_lng`, `jumlah_lantai`, `link_maps`, `foto`, `operasional`, `link_detail`) VALUES
 (1, 'Gedung Rektorat', 'Pusat administrasi universitas dan kantor pimpinan.', -6.932128011761481, 107.7165999996574, 6, 'https://maps.app.goo.gl/xEG6hWhWUk8PonABA', 'https://i.pinimg.com/736x/77/99/e7/7799e72df20c6e410bff6d0fd5dba594.jpg', '06.00 - 18.00', 'fakultas/rektorat.php'),
 (2, 'Fakultas Ilmu Sosial dan Politik', 'Fakultas yang membawahi program studi sosial dan politik.', -6.931983997248028, 107.71690305390172, 4, 'https://maps.app.goo.gl/E564sQBAwip6haMG8', 'https://i.pinimg.com/736x/e4/6e/51/e46e51766a57feb14d24cd9146dc928e.jpg', '06.00 - 18.00', 'fakultas/fisip.php'),
-(3, 'Gedung Abjan Sulaeman', 'Gedung perkuliahan dan pusat kegiatan fakultas.', -6.9319047848180615, 107.71684203364782, 4, '', '', '06.00 - 18.00', ''),
+(3, 'Gedung Abjan Sulaeman', 'Gedung perkuliahan dan pusat kegiatan fakultas.', -6.9319047848180615, 107.71684203364782, 4, 'https://maps.app.goo.gl/DvH3CbLMQLG24L387', 'https://i.pinimg.com/736x/36/8f/d2/368fd238ae130ccd51a1931d9a46710d.jpg', '06.00 - 18.00', 'fakultas/abjan.php'),
 (4, 'Gedung No Name Dekat Abjan', 'Gedung belum memiliki nama resmi, terletak dekat Abjan.', -6.931877035422862, 107.71730199958503, 4, '', '', '06.00 - 18.00', ''),
 (5, 'Gedung No Name 2 Samping Alfa', 'Gedung belum bernama, terletak di samping Alfa.', -6.931877035422862, 107.71730199958503, 4, '', '', '06.00 - 18.00', ''),
 (6, 'Laboratorium', 'Gedung laboratorium untuk praktikum mahasiswa.', -6.931919614485614, 107.71828926348739, 4, '', '', '06.00 - 18.00', ''),
