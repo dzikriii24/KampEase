@@ -33,65 +33,85 @@
 </head>
 
 
-<body class="min-h-screen flex flex-col items-center justify-start mx-auto px-4">
-    <!-- Keterangan Icon -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-7xl px-4 py-8">
-        <!-- Baris 1 -->
-        <div>
-            <ol class="grid grid-cols-3 sm:grid-cols-3 overflow-hidden rounded-xl border border-gray-200 bg-white text-sm text-[#1F2937] shadow-sm">
-                <li class="flex flex-col items-center justify-center gap-2 p-5">
-                    <i class="fi fi-ss-building text-2xl text-[#7C3AED]"></i>
-                    <strong class="font-medium">Gedung</strong>
-                </li>
-                <li class="flex flex-col items-center justify-center gap-2 p-5 bg-[#F3EBFF]">
-                    <i class="fi fi-sc-wifi text-2xl text-[#7C3AED]"></i>
-                    <strong class="font-medium">Wi-Fi</strong>
-                </li>
-                <li class="flex flex-col items-center justify-center gap-2 p-5">
-                    <i class="fi fi-sr-mosque text-2xl text-[#7C3AED]"></i>
-                    <strong class="font-medium">Mushalla</strong>
-                </li>
-            </ol>
-        </div>
+<body class="min-h-screen flex flex-col items-center justify-start mx-auto">
 
-        <!-- Baris 2 -->
-        <div>
-            <ol class="grid grid-cols-3 sm:grid-cols-3 overflow-hidden rounded-xl border border-gray-200 bg-white text-sm text-[#1F2937] shadow-sm">
-                <li class="flex flex-col items-center justify-center gap-2 p-5">
-                    <i class="fi fi-sr-restaurant text-2xl text-[#7C3AED]"></i>
-                    <strong class="font-medium">Kantin</strong>
-                </li>
-                <li class="flex flex-col items-center justify-center gap-2 p-5 bg-[#F3EBFF]">
-                    <i class="fi fi-sr-shop text-2xl text-[#7C3AED]"></i>
-                    <strong class="font-medium">Mini Market</strong>
-                </li>
-                <li class="flex flex-col items-center justify-center gap-2 p-5">
-                    <i class="fi fi-ss-book-alt text-2xl text-[#7C3AED]"></i>
-                    <strong class="font-medium">Perpustakaan</strong>
-                </li>
-            </ol>
-        </div>
+    <section class="overflow-hidden bg-gray-50 sm:grid sm:grid-cols-2">
+        <div class="p-8 md:p-12 lg:px-16 lg:py-24">
+            <div class="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
+                <h2 class="text-2xl font-bold text-gray-900 md:text-3xl">
+                    Maps Kampus Universitas Islam Negeri Sunan Gunung Djati Bandung
+                </h2>
 
-        <!-- Baris 3 -->
-        <div>
-            <ol class="grid grid-cols-3 sm:grid-cols-3 overflow-hidden rounded-xl border border-gray-200 bg-white text-sm text-[#1F2937] shadow-sm">
-                <li class="flex flex-col items-center justify-center gap-2 p-5">
-                    <i class="fi fi-rs-document text-2xl text-[#7C3AED]"></i>
-                    <strong class="font-medium">Photo Copy</strong>
-                </li>
-                <!-- Tambahan jika ingin genap -->
-                <li class="flex flex-col items-center justify-center gap-2 p-5 bg-[#F3EBFF]">
-                    <i class="fi fi-ss-marker text-2xl text-[#7C3AED]"></i>
-                    <strong class="font-medium">Tanda Lokasi</strong>
-                </li>
-                <li class="flex flex-col items-center justify-center gap-2 p-5">
-                    <i class="fi fi-ss-question-square text-2xl text-[#7C3AED]"></i>
-                    <strong class="font-medium">Lainnya</strong>
-                </li>
-            </ol>
+                <p class="hidden text-gray-500 md:mt-4 md:block">
+                    Temukan lokasi penting di kampus UIN SGD Bandung dengan mudah. Dari gedung perkuliahan hingga fasilitas umum, semua ada di sini. Gunakan peta interaktif kami untuk menjelajahi kampus dan temukan tempat yang Anda butuhkan.
+                </p>
+            </div>
         </div>
-    </div>
-    <!-- Keterangan END -->
+        <!-- Keterangan Icon -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-7xl px-4 py-8">
+            <!-- Baris 1 -->
+            <div>
+                <ol class="grid grid-cols-3 sm:grid-cols-3 overflow-hidden rounded-xl border border-gray-200 bg-white text-sm text-[#1F2937] shadow-sm">
+                    <li class="flex flex-col items-center justify-center gap-2 p-5">
+                        <i class="fi fi-ss-building text-2xl text-[#7C3AED]"></i>
+                        <strong class="font-medium">Gedung</strong>
+                    </li>
+                    <li class="flex flex-col items-center justify-center gap-2 p-5 bg-[#F3EBFF]">
+                        <i class="fi fi-sc-wifi text-2xl text-[#7C3AED]"></i>
+                        <strong class="font-medium">Wi-Fi</strong>
+                    </li>
+                    <li class="flex flex-col items-center justify-center gap-2 p-5">
+                        <i class="fi fi-sr-mosque text-2xl text-[#7C3AED]"></i>
+                        <strong class="font-medium">Mushalla</strong>
+                    </li>
+                </ol>
+            </div>
+
+            <!-- Baris 2 -->
+            <div>
+                <ol class="grid grid-cols-3 sm:grid-cols-3 overflow-hidden rounded-xl border border-gray-200 bg-white text-sm text-[#1F2937] shadow-sm">
+                    <li class="flex flex-col items-center justify-center gap-2 p-5">
+                        <i class="fi fi-sr-restaurant text-2xl text-[#7C3AED]"></i>
+                        <strong class="font-medium">Kantin</strong>
+                    </li>
+                    <li class="flex flex-col items-center justify-center gap-2 p-5 bg-[#F3EBFF]">
+                        <i class="fi fi-sr-shop text-2xl text-[#7C3AED]"></i>
+                        <strong class="font-medium">Market</strong>
+                    </li>
+                    <li class="flex flex-col items-center justify-center gap-2 p-5">
+                        <i class="fi fi-ss-book-alt text-2xl text-[#7C3AED]"></i>
+                        <strong class="font-medium">Perpustakaan</strong>
+                    </li>
+                </ol>
+            </div>
+
+            <!-- Baris 3 -->
+            <div>
+                <ol class="grid grid-cols-4 sm:grid-cols-4 overflow-hidden rounded-xl border border-gray-200 bg-white text-sm text-[#1F2937] shadow-sm">
+                    <li class="flex flex-col items-center justify-center gap-2 p-5">
+                        <i class="fi fi-sr-document text-2xl text-[#7C3AED]"></i>
+                        <strong class="font-medium">Fotokopi</strong>
+                    </li>
+                    <!-- Tambahan jika ingin genap -->
+                    <li class="flex flex-col items-center justify-center gap-2 p-5">
+                        <i class="fi fi-sr-parking-circle text-2xl text-[#7C3AED]"></i>
+                        <strong class="font-medium">Parkiran</strong>
+                    </li>
+                    <li class="flex flex-col items-center justify-center gap-2 p-5">
+                        <i class="fi fi-ss-atm text-2xl text-[#7C3AED]"></i>
+                        <strong class="font-medium">ATM</strong>
+                    </li>
+                    <li class="flex flex-col items-center justify-center gap-2 p-5">
+                        <i class="fi fi-ss-court-sport text-2xl text-[#7C3AED]"></i>
+                        <strong class="font-medium">Lapangan</strong>
+                    </li>
+
+                </ol>
+            </div>
+        </div>
+        <!-- Keterangan END -->
+    </section>
+
     <!-- MAPS & DESKRIPSI -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
         <!-- MAP (2 kolom dari 3) -->

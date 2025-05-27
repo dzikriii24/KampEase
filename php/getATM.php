@@ -1,6 +1,6 @@
 <?php
 $koneksi = new mysqli("localhost", "root", "", "kamp_ease");
-$query = $koneksi->query("SELECT * FROM ruang");
+$query = $koneksi->query("SELECT * FROM atm");
 
 $data = array();
 while ($row = $query->fetch_assoc()) {

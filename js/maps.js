@@ -56,6 +56,13 @@
                 iconAnchor: [12, 25],
                 popupAnchor: [0, -25]
             }),
+            atm: L.icon({
+                iconUrl: '../images/icons/atm.png',
+                iconSize: [20, 20],
+                iconAnchor: [12, 25],
+                popupAnchor: [0, -25]
+            }),
+
         };
 
 
@@ -115,12 +122,14 @@
                         document.getElementById("info-panel").innerHTML = `
 
                     
-        <button onclick="foto.showModal()">
-            <img  style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"
-            alt=""
-            src="${gedung.foto}"
-             class="h-60 mx-auto w-[430px] object-cover sm:h-60 lg:h-96"/>
-        </button>
+        <button onclick="foto.showModal()" style="cursor: pointer;">
+            <img
+                src="${gedung.foto}"
+                style="cursor: pointer; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"
+                class="h-60 mx-auto w-[430px] object-cover sm:h-60 lg:h-96"
+            />
+            </button>
+
 
         <dialog id="foto" class="modal">
                 <div class="modal-box w-auto max-w-[400px] p-0 overflow-hidden">
@@ -140,7 +149,7 @@
                 </div>
                 <div>
                     <p class="text-[12px] text-gray-500 w-full">Koordinat</p>
-                    <p class="text-[12px] text-gray-500 w-full">-6.930474582399706, 107.71777771238854</p>
+                    <p class="text-[12px] text-gray-500 w-full">${gedung.koordinat_lat}, ${gedung.koordinat_lng}</p>
                 </div>
             </dl>
 
@@ -204,17 +213,19 @@
                 });
             });
 
-        fetch("wifi.php")
+
+
+        fetch("getATM.php")
             .then(response => response.json())
             .then(data => {
-                data.forEach(wifi => {
-                    const marker = L.marker([wifi.koordinat_lat, wifi.koordinat_lng], {
-                        icon: icons.wifi
+                data.forEach(atm => {
+                    const marker = L.marker([atm.koordinat_lat, atm.koordinat_lng], {
+                        icon: icons.atm
                     }).addTo(map);
 
                     // Tambahkan tooltip saat hover
                     marker.bindTooltip(
-                        `<div class="tooltip rounded-xl" data-tip="${wifi.nama_wifi}">Wifi Spot<br/>${wifi.nama_wifi}</div>`, {
+                        `<div class="tooltip rounded-xl" data-tip="${atm.nama_bank}">ATM<br/>${atm.nama_bank}</div>`, {
                             direction: 'top',
                             permanent: false,
                             className: 'custom-tooltip',
@@ -225,55 +236,76 @@
                     marker.on("click", () => {
                         document.getElementById("info-panel").innerHTML = `
 
-                            <a href="#" class="block rounded-lg p-4">
-        <img
-            style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"
+                    
+        <button onclick="foto.showModal()">
+            <img  style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"
             alt=""
-            src="${wifi.foto}"
-            class="h-56 w-full rounded-md object-cover" />
+            src="${atm.foto}"
+             class="h-60 mx-auto w-[430px] object-cover sm:h-60 lg:h-96"/>
+        </button>
+
+        <dialog id="foto" class="modal">
+                <div class="modal-box w-auto max-w-[400px] p-0 overflow-hidden">
+                    <form method="dialog">
+                        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 z-10">✕</button>
+                    </form>
+                    <img src="${atm.foto}" alt="Gambar"
+                        class="max-w-full h-auto block" />
+                </div>
+            </dialog>
+
 
         <div class="mt-2 rounded-lg p-4 poppins-regular" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
             <dl>
                 <div>
-                    <dd class="font-medium">${wifi.nama_wifi}</dd>
+                    <dd class="font-medium">${atm.nama_bank}</dd>
                 </div>
                 <div>
                     <p class="text-[12px] text-gray-500 w-full">Koordinat</p>
-                    <p class="text-[12px] text-gray-500 w-full">-6.930474582399706, 107.71777771238854</p>
+                    <p class="text-[12px] text-gray-500 w-full">${atm.koordinat_lat}, ${atm.koordinat_lng}</p>
                 </div>
             </dl>
 
-            <div class="mt-6 flex items-center gap-4 text-xs">
+            <div class="mt-6 flex items-center gap-8 text-xs">
                 <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bank" viewBox="0 0 16 16">
+  <path d="m8 0 6.61 3h.89a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v7a.5.5 0 0 1 .485.38l.5 2a.498.498 0 0 1-.485.62H.5a.498.498 0 0 1-.485-.62l.5-2A.5.5 0 0 1 1 13V6H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 3h.89zM3.777 3h8.447L8 1zM2 6v7h1V6zm2 0v7h2.5V6zm3.5 0v7h1V6zm2 0v7H12V6zM13 6v7h1V6zm2-1V4H1v1zm-.39 9H1.39l-.25 1h13.72z"/>
+</svg>
                     <div class="mt-1.5 sm:mt-0">
-                        <p class="text-[#1F2937]">Nama Wifi</p>
+                        <p class="text-[#1F2937]">Nama ATM</p>
 
-                        <p class="font-lg nunito-regular text-gray-500">${wifi.nama_wifi}</p>
+                        <p class="font-lg nunito-regular text-gray-500">${atm.nama_bank}</p>
                     </div>
                 </div>
 
-                
+
             </div>
-            <div class="text-xs">
+            <div class="mt-5 sm:mt-3 gap-8 text-xs">
 
-                <p class="text-[#1F2937]">Password Wi-Fi</p>
+                <p class="text-[#1F2937] mt-3">Deskripsi ATM</p>
 
-                <p class="font-lg nunito-regular text-gray-500">${wifi.password_wifi}</p>
+                <p class="font-lg nunito-regular text-gray-500">${atm.deskripsi}</p>
 
-                <p class=""><a href='${wifi.link_maps}' class="text-blue-500 hover:text-blue-700 popins-regular">
-                    Pergi Sekarang
-                </a></p>
+                <br/>
 
-                
+                <p class=""><a href='${atm.link_maps}' class="text-blue-500 hover:text-blue-700 popins-regular">
+                        Pergi Sekarang
+                    </a></p>
+
+                <p class="mt-2"><a href='${atm.link_detail}' class="text-blue-500 hover:text-blue-700 popins-regular">
+                        Lihat Detail Gedung
+                    </a></p>
+
             </div>
 
 
         </div>
-    </a>
+    
             `
                     });
                 });
             });
+
 
 
         // Maps Unlocked
