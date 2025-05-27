@@ -26,7 +26,7 @@
                 iconAnchor: [12, 25],
                 popupAnchor: [0, -25]
             }),
-            atk: L.icon({
+            fotokopi: L.icon({
                 iconUrl: '../images/icons/document.png',
                 iconSize: [20, 20],
                 iconAnchor: [12, 25],
@@ -58,6 +58,12 @@
             }),
             atm: L.icon({
                 iconUrl: '../images/icons/atm.png',
+                iconSize: [20, 20],
+                iconAnchor: [12, 25],
+                popupAnchor: [0, -25]
+            }),
+            lapangan: L.icon({
+                iconUrl: '../images/icons/lapangan.png',
                 iconSize: [20, 20],
                 iconAnchor: [12, 25],
                 popupAnchor: [0, -25]
@@ -98,9 +104,205 @@
 
 
 
-        // Maps Detaill
+        // FUNGSI YANG DIGUNAKAN KALO TABELNYA ADA JAM BUKA DAN JAM TUTUP
 
-        fetch("getGedung.php")
+        function renderInfoPanelBiasa(data, type = "default") {
+            return `
+              <button onclick="foto.showModal()">
+            <img  style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"
+            alt=""
+            src="${data.foto}"
+             class="h-60 mx-auto w-[430px] object-cover sm:h-60 lg:h-96"/>
+        </button>
+
+        <dialog id="foto" class="modal">
+                <div class="modal-box w-auto max-w-[400px] p-0 overflow-hidden">
+                    <form method="dialog">
+                        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 z-10">✕</button>
+                    </form>
+                    <img src="${data.foto}" alt="Gambar"
+                        class="max-w-full h-auto block" />
+                </div>
+            </dialog>
+
+
+        <div class="mt-2 rounded-lg p-4 poppins-regular" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+            <dl>
+                <div>
+                    <dd class="font-medium">${data.nama_bank || data.nama_kantin || data.nama_lapangan}</dd>
+                </div>
+                <div>
+                    <p class="text-[12px] text-gray-500 w-full">Koordinat</p>
+                    <p class="text-[12px] text-gray-500 w-full">${data.koordinat_lat}, ${data.koordinat_lng}</p>
+                </div>
+            </dl>
+
+            <div class="mt-6 flex items-center gap-8 text-xs">
+                <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+                    <svg ${data.path}/>
+</svg>
+                    <div class="mt-1.5 sm:mt-0">
+                        <p class="text-[#1F2937]">Nama ${type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()}</p>
+
+                        <p class="font-lg nunito-regular text-gray-500">${data.nama_bank || data.nama_kantin || data.nama_lapangan}</p>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="mt-5 sm:mt-3 gap-8 text-xs">
+
+                <p class="text-[#1F2937] mt-3">Deskripsi ${type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()}</p>
+
+                <p class="font-lg nunito-regular text-gray-500">${data.deskripsi}</p>
+
+                <br/>
+
+                <p class=""><a href='${data.link_maps}' class="text-blue-500 hover:text-blue-700 popins-regular">
+                        Pergi Sekarang
+                    </a></p>
+
+                <p class="mt-2"><a href='${data.link_detail}' class="text-blue-500 hover:text-blue-700 popins-regular">
+                        Lihat Detail Gedung
+                    </a></p>
+
+            </div>
+
+
+        </div>
+        `
+        }
+
+        function renderInfoPanelJam(data, type = "default") {
+            return `
+        <button onclick="foto.showModal()">
+            <img style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;" 
+                 src="${data.foto}" alt="" 
+                 class="h-60 mx-auto w-[430px] object-cover sm:h-60 lg:h-96"/>
+        </button>
+
+        <dialog id="foto" class="modal">
+            <div class="modal-box w-auto max-w-[400px] p-0 overflow-hidden">
+                <form method="dialog">
+                    <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 z-10">✕</button>
+                </form>
+                <img src="${data.foto}" alt="Gambar" class="max-w-full h-auto block" />
+            </div>
+        </dialog>
+
+        <div class="mt-2 rounded-lg p-4 poppins-regular" 
+             style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+            <dl>
+                <div>
+                    <dd class="font-medium">${data.nama_tempat}</dd>
+                </div>
+                <div>
+                    <p class="text-[12px] text-gray-500 w-full">Koordinat</p>
+                    <p class="text-[12px] text-gray-500 w-full">${data.koordinat_lat}, ${data.koordinat_lng}</p>
+                </div>
+            </dl>
+
+            <div class="mt-6 flex items-center gap-8 text-xs">
+                <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
+                         class="bi bi-bank" viewBox="0 0 16 16">
+                      <path d="${data.path}"/>
+                    </svg>
+                    <div class="mt-1.5 sm:mt-0">
+                        <p class="text-[#1F2937]">Nama ${type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()}</p>
+                        <p class="font-lg nunito-regular text-gray-500">
+                            ${data.nama_tempat}
+                        </p>
+                        
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5 sm:mt-3 gap-8 text-xs">
+                <p class="text-[#1F2937]">Deskripsi ${type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()}</p>
+                <p class="font-lg nunito-regular text-gray-500">${data.deskripsi || "-"}</p>
+
+                <br/>
+                <p class="text-[#1F2937] mt-3">Jam Buka</p>
+                <p class="font-lg nunito-regular text-gray-500">${data.jam_buka || "Tidak tersedia"}</p>
+                <p class="text-[#1F2937] mt-1">Jam Tutup</p>
+                <p class="font-lg nunito-regular text-gray-500">${data.jam_tutup || "Tidak tersedia"}</p>
+
+                <br/>
+                ${data.link_maps ? `<p><a href='${data.link_maps}' class="text-blue-500 hover:text-blue-700">
+                    Pergi Sekarang</a></p>` : ''}
+
+                ${data.link_detail ? `<p class="mt-2"><a href='${data.link_detail}' 
+                    class="text-blue-500 hover:text-blue-700">Lihat Detail</a></p>` : ''}
+            </div>
+        </div>
+    `;
+        }
+
+
+
+
+        fetch("getData.php?type=kantin")
+            .then(res => res.json())
+            .then(data => {
+                data.forEach(kantin => {
+                    const marker = L.marker([kantin.koordinat_lat, kantin.koordinat_lng], {
+                        icon: icons.kantin
+                    }).addTo(map);
+
+                    marker.bindTooltip(kantin.nama_kantin, {
+                        direction: 'top',
+                        sticky: true
+                    });
+
+                    marker.on("click", () => {
+                        document.getElementById("info-panel").innerHTML = renderInfoPanelBiasa(kantin, "kantin");
+                    });
+                });
+            });
+
+             fetch("getData.php?type=lapangan")
+            .then(res => res.json())
+            .then(data => {
+                data.forEach(lapangan => {
+                    const marker = L.marker([lapangan.koordinat_lat, lapangan.koordinat_lng], {
+                        icon: icons.lapangan
+                    }).addTo(map);
+
+                    marker.bindTooltip(lapangan.nama_lapangan, {
+                        direction: 'top',
+                        sticky: true
+                    });
+
+                    marker.on("click", () => {
+                        document.getElementById("info-panel").innerHTML = renderInfoPanelBiasa(lapangan, "lapangan");
+                    });
+                });
+            });
+
+        // FOTO COPY
+        fetch("getData.php?type=fotokopi")
+            .then(res => res.json())
+            .then(data => {
+                data.forEach(fotokopi => {
+                    const marker = L.marker([fotokopi.koordinat_lat, fotokopi.koordinat_lng], {
+                        icon: icons.fotokopi
+                    }).addTo(map);
+
+                    marker.bindTooltip(fotokopi.nama_tempat, {
+                        direction: 'top',
+                        sticky: true
+                    });
+
+                    marker.on("click", () => {
+                        document.getElementById("info-panel").innerHTML = renderInfoPanelJam(fotokopi, "fotokopi");
+                    });
+                });
+            });
+
+        //   GEDUNG
+
+        fetch("getData.php?type=gedung")
             .then(response => response.json())
             .then(data => {
                 data.forEach(gedung => {
@@ -215,7 +417,7 @@
 
 
 
-        fetch("getATM.php")
+        fetch("getData.php?type=atm")
             .then(response => response.json())
             .then(data => {
                 data.forEach(atm => {
@@ -234,74 +436,7 @@
                         }
                     );
                     marker.on("click", () => {
-                        document.getElementById("info-panel").innerHTML = `
-
-                    
-        <button onclick="foto.showModal()">
-            <img  style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"
-            alt=""
-            src="${atm.foto}"
-             class="h-60 mx-auto w-[430px] object-cover sm:h-60 lg:h-96"/>
-        </button>
-
-        <dialog id="foto" class="modal">
-                <div class="modal-box w-auto max-w-[400px] p-0 overflow-hidden">
-                    <form method="dialog">
-                        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 z-10">✕</button>
-                    </form>
-                    <img src="${atm.foto}" alt="Gambar"
-                        class="max-w-full h-auto block" />
-                </div>
-            </dialog>
-
-
-        <div class="mt-2 rounded-lg p-4 poppins-regular" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
-            <dl>
-                <div>
-                    <dd class="font-medium">${atm.nama_bank}</dd>
-                </div>
-                <div>
-                    <p class="text-[12px] text-gray-500 w-full">Koordinat</p>
-                    <p class="text-[12px] text-gray-500 w-full">${atm.koordinat_lat}, ${atm.koordinat_lng}</p>
-                </div>
-            </dl>
-
-            <div class="mt-6 flex items-center gap-8 text-xs">
-                <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bank" viewBox="0 0 16 16">
-  <path d="m8 0 6.61 3h.89a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v7a.5.5 0 0 1 .485.38l.5 2a.498.498 0 0 1-.485.62H.5a.498.498 0 0 1-.485-.62l.5-2A.5.5 0 0 1 1 13V6H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 3h.89zM3.777 3h8.447L8 1zM2 6v7h1V6zm2 0v7h2.5V6zm3.5 0v7h1V6zm2 0v7H12V6zM13 6v7h1V6zm2-1V4H1v1zm-.39 9H1.39l-.25 1h13.72z"/>
-</svg>
-                    <div class="mt-1.5 sm:mt-0">
-                        <p class="text-[#1F2937]">Nama ATM</p>
-
-                        <p class="font-lg nunito-regular text-gray-500">${atm.nama_bank}</p>
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="mt-5 sm:mt-3 gap-8 text-xs">
-
-                <p class="text-[#1F2937] mt-3">Deskripsi ATM</p>
-
-                <p class="font-lg nunito-regular text-gray-500">${atm.deskripsi}</p>
-
-                <br/>
-
-                <p class=""><a href='${atm.link_maps}' class="text-blue-500 hover:text-blue-700 popins-regular">
-                        Pergi Sekarang
-                    </a></p>
-
-                <p class="mt-2"><a href='${atm.link_detail}' class="text-blue-500 hover:text-blue-700 popins-regular">
-                        Lihat Detail Gedung
-                    </a></p>
-
-            </div>
-
-
-        </div>
-    
-            `
+                        document.getElementById("info-panel").innerHTML = renderInfoPanelBiasa(atm, "atm");
                     });
                 });
             });
