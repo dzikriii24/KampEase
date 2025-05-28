@@ -129,7 +129,7 @@
         <div class="mt-2 rounded-lg p-4 poppins-regular" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
             <dl>
                 <div>
-                    <dd class="font-medium">${data.nama_bank || data.nama_kantin || data.nama_lapangan}</dd>
+                    <dd class="font-medium">${data.nama_bank || data.nama_kantin || data.nama_lapangan  || data.nama_masjid}</dd>
                 </div>
                 <div>
                     <p class="text-[12px] text-gray-500 w-full">Koordinat</p>
@@ -144,7 +144,7 @@
                     <div class="mt-1.5 sm:mt-0">
                         <p class="text-[#1F2937]">Nama ${type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()}</p>
 
-                        <p class="font-lg nunito-regular text-gray-500">${data.nama_bank || data.nama_kantin || data.nama_lapangan}</p>
+                        <p class="font-lg nunito-regular text-gray-500">${data.nama_bank || data.nama_kantin || data.nama_lapangan || data.nama_masjid}</p>
                     </div>
                 </div>
 
@@ -162,9 +162,14 @@
                         Pergi Sekarang
                     </a></p>
 
-                <p class="mt-2"><a href='${data.link_detail}' class="text-blue-500 hover:text-blue-700 popins-regular">
-                        Lihat Detail Gedung
-                    </a></p>
+                ${data.link_detail ? 
+  `<p class="mt-2">
+    <a href='${data.link_detail}' class="text-blue-500 hover:text-blue-700 popins-regular">
+      Lihat Detail Gedung
+    </a>
+  </p>` 
+: ''}
+
 
             </div>
 
@@ -232,7 +237,7 @@
                 ${data.link_maps ? `<p><a href='${data.link_maps}' class="text-blue-500 hover:text-blue-700">
                     Pergi Sekarang</a></p>` : ''}
 
-                ${data.link_detail ? `<p class="mt-2"><a href='${data.link_detail}' 
+                ${data.link_detail ? `<p class="mt-2"><a href='${data.link_detail || 'tidak tersedia'}' 
                     class="text-blue-500 hover:text-blue-700">Lihat Detail</a></p>` : ''}
             </div>
         </div>
@@ -240,6 +245,30 @@
         }
 
 
+
+        fetch("getData.php?type=masjid")
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(masjid => {
+                    const marker = L.marker([masjid.koordinat_lat, masjid.koordinat_lng], {
+                        icon: icons.mushalla
+                    }).addTo(map);
+
+                    // Tambahkan tooltip saat hover
+                    marker.bindTooltip(
+                        `<div class="tooltip rounded-xl" data-tip="${masjid.nama_masjid}">Masjid<br/>${masjid.nama_masjid}</div>`, {
+                            direction: 'top',
+                            permanent: false,
+                            className: 'custom-tooltip',
+                            sticky: true,
+                            opacity: 0.6
+                        }
+                    );
+                    marker.on("click", () => {
+                        document.getElementById("info-panel").innerHTML = renderInfoPanelBiasa(masjid, "masjid");
+                    });
+                });
+            });
 
 
         fetch("getData.php?type=kantin")
@@ -261,7 +290,7 @@
                 });
             });
 
-             fetch("getData.php?type=lapangan")
+        fetch("getData.php?type=lapangan")
             .then(res => res.json())
             .then(data => {
                 data.forEach(lapangan => {

@@ -9,6 +9,7 @@ $tableMap = [
     'fotokopi' => 'fotokopi',
     'kantin' => 'kantin',
     'lapangan' => 'lapangan',
+    'masjid' => 'masjid',
 ];
 
 if (array_key_exists($type, $tableMap)) {
