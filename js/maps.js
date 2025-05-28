@@ -68,6 +68,12 @@
                 iconAnchor: [12, 25],
                 popupAnchor: [0, -25]
             }),
+            parkiran: L.icon({
+                iconUrl: '../images/icons/parkir.png',
+                iconSize: [20, 20],
+                iconAnchor: [12, 25],
+                popupAnchor: [0, -25]
+            })
 
         };
 
@@ -129,7 +135,7 @@
         <div class="mt-2 rounded-lg p-4 poppins-regular" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
             <dl>
                 <div>
-                    <dd class="font-medium">${data.nama_bank || data.nama_kantin || data.nama_lapangan  || data.nama_masjid}</dd>
+                    <dd class="font-medium">${data.nama_bank || data.nama_kantin || data.nama_lapangan  || data.nama_masjid || data.nama_parkiran}</dd>
                 </div>
                 <div>
                     <p class="text-[12px] text-gray-500 w-full">Koordinat</p>
@@ -144,7 +150,7 @@
                     <div class="mt-1.5 sm:mt-0">
                         <p class="text-[#1F2937]">Nama ${type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()}</p>
 
-                        <p class="font-lg nunito-regular text-gray-500">${data.nama_bank || data.nama_kantin || data.nama_lapangan || data.nama_masjid}</p>
+                        <p class="font-lg nunito-regular text-gray-500">${data.nama_bank || data.nama_kantin || data.nama_lapangan || data.nama_masjid || data.nama_parkiran}</p>
                     </div>
                 </div>
 
@@ -199,7 +205,7 @@
              style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
             <dl>
                 <div>
-                    <dd class="font-medium">${data.nama_tempat}</dd>
+                    <dd class="font-medium">${data.nama_tempat || data.nama_minimarket}</dd>
                 </div>
                 <div>
                     <p class="text-[12px] text-gray-500 w-full">Koordinat</p>
@@ -209,14 +215,13 @@
 
             <div class="mt-6 flex items-center gap-8 text-xs">
                 <div class="sm:inline-flex sm:shrink-0 sm:items-center sm:gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" 
-                         class="bi bi-bank" viewBox="0 0 16 16">
-                      <path d="${data.path}"/>
+                    <svg ${data.path}/>
+</svg>
                     </svg>
                     <div class="mt-1.5 sm:mt-0">
                         <p class="text-[#1F2937]">Nama ${type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()}</p>
                         <p class="font-lg nunito-regular text-gray-500">
-                            ${data.nama_tempat}
+                            ${data.nama_tempat || data.nama_minimarket}
                         </p>
                         
                     </div>
@@ -244,6 +249,30 @@
     `;
         }
 
+
+        fetch("getData.php?type=parkiran")
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(parkiran => {
+                    const marker = L.marker([parkiran.koordinat_lat, parkiran.koordinat_lng], {
+                        icon: icons.parkiran
+                    }).addTo(map);
+
+                    // Tambahkan tooltip saat hover
+                    marker.bindTooltip(
+                        `<div class="tooltip rounded-xl" data-tip="${parkiran.nama_parkiran}">Parkiran<br/>${parkiran.nama_parkiran}</div>`, {
+                            direction: 'top',
+                            permanent: false,
+                            className: 'custom-tooltip',
+                            sticky: true,
+                            opacity: 0.6
+                        }
+                    );
+                    marker.on("click", () => {
+                        document.getElementById("info-panel").innerHTML = renderInfoPanelBiasa(parkiran, "parkiran");
+                    });
+                });
+            });
 
 
         fetch("getData.php?type=masjid")
@@ -328,6 +357,25 @@
                     });
                 });
             });
+            fetch("getData.php?type=minimarket")
+            .then(res => res.json())
+            .then(data => {
+                data.forEach(minimarket => {
+                    const marker = L.marker([minimarket.koordinat_lat, minimarket.koordinat_lng], {
+                        icon: icons.mini_market
+                    }).addTo(map);
+
+                    marker.bindTooltip(minimarket.nama_minimarket, {
+                        direction: 'top',
+                        sticky: true
+                    });
+
+                    marker.on("click", () => {
+                        document.getElementById("info-panel").innerHTML = renderInfoPanelJam(minimarket, "minimarket");
+                    });
+                });
+            });
+
 
         //   GEDUNG
 
