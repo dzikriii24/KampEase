@@ -1,38 +1,100 @@
 <?php
 $conn = new mysqli("localhost", "root", "", "kamp_ease");
-session_start();
-error_reporting(0);
+require '../vendor/autoload.php';
 
-if (isset($_SESSION['username'])) {
-    header("Location: index.php");
-}
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
-if (isset($_POST['submit'])) {
+$mail = new PHPMailer(true);
+
+$mail->SMTPDebug = 2;
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
-    $password = md5($_POST['password']);
+    $new_password = md5($_POST['new_password']); // Password baru dienkripsi dengan md5
 
-    // // Pengecekan apakah email dan password sesuai dengan akun admin
-    // if ($email == 'canteengoo@gmail.com' && $_POST['password'] == 'admin1234') {
-    //     $_SESSION['username'] = 'admin';
-    //     header("Location: admin.php");
-    //     exit();
-    // }
-
-    // Query untuk memeriksa pengguna selain admin
-    $sql = "SELECT * FROM user WHERE email='$email' AND password='$password'";
+    // Cek apakah email ada di database
+    $sql = "SELECT * FROM user WHERE email='$email'";
     $result = mysqli_query($conn, $sql);
 
-    if ($result->num_rows > 0) {
-        $row = mysqli_fetch_assoc($result);
-        $_SESSION['username'] = $row['username'];
-        $message = "Login berhasil, selamat datang " . $row['username'] . "!";
-        $status = 'success';
+    if (mysqli_num_rows($result) > 0) {
+        // Jika email ditemukan, update password
+        $otp_code = rand(100000, 999999);
+        $update_sql = "UPDATE user SET password='$new_password' WHERE email='$email'";
+        $sqlOTP = "UPDATE user SET otp_code='$otp_code', is_verified=0 WHERE email='$email'";
+
+        if (mysqli_query($conn, $sqlOTP)) {
+            // Send OTP Email
+            try {
+                $mail->isSMTP();
+                $mail->Host       = 'smtp.gmail.com';
+                $mail->SMTPAuth   = true;
+                $mail->Username   = 'dzikrirabbani2401@gmail.com';  // Ganti dengan alamat email Anda
+                $mail->Password   = 'yanq vpur bvbf zepl';   // Ganti dengan password atau App Password Anda
+                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;  // TLS
+                $mail->Port       = 587;  // Port untuk TLS
+
+                $mail->setFrom('dzikrirabbani2401@gmail.com', 'KampEase');
+                $mail->addAddress($email);  // Hanya mengirim ke email yang dimasukkan
+
+                $mail->isHTML(true);
+                $mail->Subject = 'Kode OTP Lupa Password';
+                $mail->Body = '
+    <div style="font-family: Arial, sans-serif; background-color: #F8F5FF; padding: 20px; border-radius: 8px;">
+    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);">
+        <h1 style="color: #7C3AED; font-size: 24px; margin-bottom: 10px;">
+            Permintaan Reset <span style="color: #4B0082;">Password</span>
+        </h1>
+        <p style="color: #4B5563; font-size: 16px; margin-bottom: 20px;">
+            Kami menerima permintaan untuk mereset kata sandi akun Anda di <strong>KampEase</strong>. Gunakan kode OTP berikut untuk melanjutkan proses reset:
+        </p>
+        <div style="text-align: center; margin: 30px 0;">
+            <span style="display: inline-block; background-color: #EDE9FE; color: #7C3AED; padding: 14px 24px; font-size: 22px; font-weight: bold; border-radius: 8px; letter-spacing: 2px;">
+                ' . $otp_code . '
+            </span>
+        </div>
+        <p style="color: #4B5563; font-size: 15px;">
+            Masukkan kode OTP di halaman reset password untuk melanjutkan. Kode ini hanya berlaku dalam beberapa menit dan akan kedaluwarsa setelahnya.
+        </p>
+        <p style="margin-top: 20px; font-size: 14px; color: #9CA3AF;">
+            Jika Anda tidak merasa meminta reset password, Anda bisa abaikan email ini. Untuk bantuan lebih lanjut, silakan hubungi tim support kami.
+        </p>
+        <hr style="margin: 40px 0; border: none; border-top: 1px solid #E5E7EB;">
+        <p style="font-size: 13px; color: #9CA3AF; text-align: center;">
+            &copy; <?= date("Y") ?> KampEase. Seluruh hak cipta dilindungi.
+        </p>
+    </div>
+</div>
+';
+
+                if ($mail->send()) {
+                    $message = 'Password Berhasil Diubah. Silakan cek email Anda untuk kode OTP.';
+                    $status = 'success';
+                    $redirect = "window.location.href='verify.php?email=$email'";
+                } else {
+                    echo "<script>alert('Gagal mengirim email. Error: {$mail->ErrorInfo}');</script>";
+                }
+            } catch (Exception $e) {
+                echo "<script>alert('Gagal mengirim email. Error: {$mail->ErrorInfo}');</script>";
+            }
+        } else {
+            echo "<script>alert('Terjadi kesalahan saat memperbarui data OTP. Silakan coba lagi.');</script>";
+        }
+
+        if (mysqli_query($conn, $update_sql)) {
+            $message = 'Password Berhasil Diubah. Silakan cek email Anda untuk kode OTP.';
+            $status = 'success';
+            $redirect = "window.location.href='verify.php?email=$email'";
+        } else {
+            $message = "Email Tidak Ditemukan, Silahkan Ulangi";
+            $status = 'error';
+        }
     } else {
-        $message = "Password atau Email Salah, Silahkan Coba Lagi";
+        // Jika email tidak ditemukan
+        $message = "Email Tidak Ditemukan, Silahkan Ulangi";
         $status = 'error';
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -67,10 +129,15 @@ if (isset($_POST['submit'])) {
 
     <link rel="stylesheet" href="../css/font.css">
     <link rel="stylesheet" href="../css/hover.css">
+    <link rel="stylesheet" href="../css/loading.css">
 </head>
 
 
 <body class="min-h-screen flex flex-col items-center justify-start mx-auto">
+
+    <div id="loader-wrapper" style="display: none;">
+        <div class="loader"></div>
+    </div>
     <!-- Tombol Back di pojok kiri atas -->
     <a href="javascript:history.back()"
         class="absolute top-4 left-4 z-50 flex items-center space-x-2 bg-white shadow-md rounded-full px-4 py-2 text-gray-800 hover:bg-gray-100 transition">
@@ -87,11 +154,11 @@ if (isset($_POST['submit'])) {
             <!-- Login form -->
             <div class="w-full md:w-1/2 p-8 md:p-12">
                 <!-- Heading -->
-                <h1 class="text-3xl font-bold text-gray-800 mb-1">Selamat datang di KampEase!</h1>
-                <p class="text-sm text-gray-500 mb-6">Masukkan detail akun kamu untuk login</p>
+                <h1 class="text-3xl font-bold text-gray-800 mb-1">Lupa Password?</h1>
+                <p class="text-sm text-gray-500 mb-6">Silahkan Masukan Email dan Password Baru</p>
 
                 <!-- Form -->
-                <form class="space-y-4" method="POST">
+                <form class="space-y-4" method="POST" onsubmit="showLoader()">
                     <div>
                         <label for="email" class="block text-sm font-medium mb-1 text-gray-700">Masukan Email</label>
                         <div class="flex rounded-md shadow-sm">
@@ -110,11 +177,11 @@ if (isset($_POST['submit'])) {
                                         d="M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25" />
                                 </svg>
                             </span>
-                            <input type="email" placeholder="jhonpork@example.com" name="email" id="email" required value="<?php echo $email; ?>"
+                            <input type="email" placeholder="jhonpork@example.com" name="email" id="email" required
                                 class="w-full rounded-r-md border border-gray-300 px-4 py-2 text-sm text-gray-700 focus:border-[#7C3AED] focus:ring-[#7C3AED] focus:outline-none" />
                         </div>
                     </div>
-                    <!-- password -->
+
                     <div>
                         <label for="password" class="block text-sm font-medium mb-1 text-gray-700">Masukan Password</label>
                         <div class="flex rounded-md shadow-sm">
@@ -124,7 +191,7 @@ if (isset($_POST['submit'])) {
                                 </svg>
                             </span>
                             <div class="relative w-full">
-                                <input type="password" placeholder="••••••••" name="password" id="password" required value="<?php echo $_POST['password']; ?>"
+                                <input type="password" placeholder="••••••••" name="new_password" id="password" required
                                     class="w-full rounded-r-md border border-gray-300 px-4 py-2 text-sm text-gray-700 focus:border-[#7C3AED] focus:ring-[#7C3AED] focus:outline-none" />
                                 <button type="button" onclick="togglePassword()"
                                     class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
@@ -135,28 +202,22 @@ if (isset($_POST['submit'])) {
 
                         </div>
                     </div>
-
-                    <div class="flex items-center justify-between text-sm">
-
-                        <a href="lupaPW.php" class="text-[#7C3AED] hover:underline font-medium">Lupa password?</a>
-                    </div>
-
                     <button type="submit" name="submit"
                         class="w-full rounded-md bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-medium py-2 transition duration-200">
-                        Masuk
+                        Verifikasi
                     </button>
                 </form>
 
                 <!-- Sign up link -->
                 <p class="text-center text-sm mt-6 text-gray-600">
                     Belum punya akun?
-                    <a href="register.php" class="text-[#7C3AED] font-semibold hover:underline">Daftar sekarang</a>
+                    <a href="#" class="text-[#7C3AED] font-semibold hover:underline">Daftar sekarang</a>
                 </p>
             </div>
 
             <!-- Image / illustration -->
             <div class="hidden md:block md:w-1/2">
-                <img src="https://i.pinimg.com/736x/6d/16/8f/6d168f1899b5525d2b6ec93f842f9c66.jpg" alt="Illustration"
+                <img src="https://i.pinimg.com/736x/5e/12/38/5e123830fa28383eaf3ecd3c0cbc5702.jpg" alt="Illustration"
                     class="h-full w-full object-cover rounded-r-xl" />
             </div>
         </div>
@@ -171,9 +232,13 @@ if (isset($_POST['submit'])) {
                 footer: '<?php echo $status == "error" ? "<a href=\"forgotPassword.php\">Lupa password?</a>" : ""; ?>'
             }).then(() => {
                 // Redirect sesuai status
-                window.location.href = "<?php echo $status == 'success' ? 'profile.php' : "login.php"; ?>";
+                window.location.href = "<?php echo $status == 'success' ? "verify.php?email=$email" : "lupaPW.php"; ?>";
             });
         <?php endif; ?>
+
+        function showLoader() {
+            document.getElementById("loader-wrapper").style.display = "flex";
+        }
 
         function togglePassword() {
             const input = document.getElementById("password");
