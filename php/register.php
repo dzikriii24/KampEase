@@ -187,7 +187,7 @@ if (isset($_POST['submit'])) {
 
     <!-- component -->
     <!-- Container -->
-    <div class="flex min-h-screen w-full items-center justify-center bg-[#F8F5FF] px-4 py-10">
+    <div class="flex min-h-screen w-full items-center justify-center bg-[#F8F5FF] px-4 py-10 mt-5">
         <!-- Signup container -->
         <div class="flex w-full max-w-5xl overflow-hidden rounded-xl shadow-xl bg-white">
             <!-- Signup form -->
@@ -323,7 +323,7 @@ if (isset($_POST['submit'])) {
                 <!-- Login link -->
                 <p class="text-center text-sm mt-6 text-gray-600">
                     Sudah punya akun?
-                    <a href="#" class="text-[#7C3AED] font-semibold hover:underline">Masuk sekarang</a>
+                    <a href="login.php" class="text-[#7C3AED] font-semibold hover:underline">Masuk sekarang</a>
                 </p>
 
 

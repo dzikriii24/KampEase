@@ -6,7 +6,7 @@ if (!isset($_SESSION['username'])) {
     // Tampilkan halaman untuk user yang belum login
 ?>
     <!DOCTYPE html>
-    <html lang="en" class="bg-[#F3F4F6]">
+    <html lang="en" class="bg-[#F8F5FF]">
 
     <head>
         <meta charset="UTF-8">
@@ -48,8 +48,8 @@ if (!isset($_SESSION['username'])) {
 
     <body class="min-h-screen flex flex-col justify-start overflow-x-hidden">
 
-        <section class="bg-[#F8F5FF] lg:grid lg:h-screen lg:place-content-center">
-            <div class="mx-auto w-screen max-w-screen-xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
+        <section class="bg-[#F8F5FF] lg:grid lg:h-screen lg:place-content-center sm:-mt-35">
+            <div class="mx-auto w-screen max-w-screen-xl px-4 py-16 sm:px-6 sm:py-8 sm:-mb-10 sm:-pb-10">
                 <div class="mx-auto max-w-prose text-center">
                     <h1 class="text-4xl font-bold text-gray-800 sm:text-5xl">
                         Jelajahi fitur dan
@@ -77,6 +77,41 @@ if (!isset($_SESSION['username'])) {
                 </div>
             </div>
         </section>
+        <div class="bg-[#F8F5FF] p-6 sm:p-2 sm:-mt-16">
+            <div class="space-y-4 max-w-xl mx-auto ">
+
+                <!-- Item 1 -->
+                <div class="border border-purple-300 rounded-lg overflow-hidden">
+                    <input type="checkbox" class="peer hidden" id="faq1" />
+
+                    <label for="faq1"
+                        class="block cursor-pointer bg-purple-100 text-purple-800 font-semibold px-4 py-3 peer-checked:bg-purple-200 transition">
+                        Bagaimana cara membuat akun?
+                    </label>
+
+                    <div class="max-h-0 peer-checked:max-h-40 overflow-hidden transition-all duration-500 bg-white">
+                        <div class="px-4 py-2 text-gray-700">
+                            Klik tombol "Sign Up" di pojok kanan atas dan ikuti proses pendaftaran yang tersedia.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="border border-purple-300 rounded-lg overflow-hidden">
+                    <input type="checkbox" class="peer hidden" id="faq2" />
+                    <label for="faq2"
+                        class="block cursor-pointer bg-purple-100 text-purple-800 font-semibold px-4 py-3 peer-checked:bg-purple-200 transition">
+                        Apakah saya bisa mengganti password?
+                    </label>
+                    <div class="max-h-0 peer-checked:max-h-40 overflow-hidden transition-all duration-500 bg-white">
+                        <div class="px-4 py-2 text-gray-700">
+                            Klik tombol "Sign Up" di pojok kanan atas dan ikuti proses pendaftaran yang tersedia.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
         <div
             class="z-40 dock text-[#1F2937]-content bg-[#DDD6FE]/70 rounded-tr-[90px] rounded-tl-[90px] sm:w-[400px] w-[388px] flex justify-center justify-self-center poppins-regular">
@@ -107,7 +142,7 @@ if (!isset($_SESSION['username'])) {
             </a>
         </div>
 
-
+        <!-- Right Side: Accordion -->
         <!-- FIXED MENU -->
         <div
             class="z-40 dock text-[#1F2937]-content bg-[#DDD6FE]/70 rounded-tr-[90px] rounded-tl-[90px] sm:w-[400px] w-[388px] flex justify-center justify-self-center poppins-regular">
@@ -138,6 +173,9 @@ if (!isset($_SESSION['username'])) {
             </a>
         </div>
 
+        <br>
+        <br>
+        <br>
     </body>
 
     </html>
