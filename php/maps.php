@@ -30,6 +30,10 @@
 
     <link rel="stylesheet" href="../css/font.css">
     <link rel="stylesheet" href="../css/hover.css">
+
+    <!--logo web-->
+    <link rel="icon" type="image/ico" href="/KampEase/images/log2.png"/>
+
 </head>
 
 
@@ -42,7 +46,7 @@
                     Maps Kampus Universitas Islam Negeri Sunan Gunung Djati Bandung
                 </h2>
 
-                <p class="hidden text-gray-500 md:mt-4 md:block">
+                <p class="hidden text-gray-500 md:mt-4 md:block poppins-regular">
                     Temukan lokasi penting di kampus UIN SGD Bandung dengan mudah. Dari gedung perkuliahan hingga fasilitas umum, semua ada di sini. Gunakan peta interaktif kami untuk menjelajahi kampus dan temukan tempat yang Anda butuhkan.
                 </p>
             </div>

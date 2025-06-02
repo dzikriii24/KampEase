@@ -16,6 +16,9 @@
         window.scrollTo(0, 0);
     </script>
 
+    <!--logo web-->
+    <link rel="icon" type="image/ico" href="/KampEase/images/log2.png"/>
+
     <!-- Flaticon -->
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-chubby/css/uicons-solid-chubby.css'>

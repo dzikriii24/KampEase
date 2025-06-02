@@ -130,6 +130,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="../css/font.css">
     <link rel="stylesheet" href="../css/hover.css">
     <link rel="stylesheet" href="../css/loading.css">
+
+    <!--logo web-->
+    <link rel="icon" type="image/ico" href="/KampEase/images/log2.png"/>
 </head>
 
 

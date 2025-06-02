@@ -17,6 +17,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    
+
+    <!--logo web-->
+    <link rel="icon" type="image/ico" href="images/log2.png"/>
 
 
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
@@ -256,7 +260,7 @@
                         <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
                     </svg>
                 </div>
-                <div class="stat-title poppins-regular text-[#1F2937]">Lokasi Disekitar Kampus</div>
+                <div class="stat-title poppins-bold text-[#1F2937]">Lokasi Disekitar Kampus</div>
                 <div class="stat-value poppins-bold text-[#7C3AED]">100+</div>
             </div>
 
@@ -286,7 +290,7 @@
                     </div>
                 </div>
                 <div class="stat-value text-[#7C3AED]">99%</div>
-                <div class="stat-title text-[#1F2937]">Tingkat Akurasi Tempat</div>
+                <div class="stat-title text-[#1F2937] poppins-bold">Tingkat Akurasi Tempat</div>
             </div>
         </div>
     </div>
@@ -382,7 +386,7 @@
     </div>
     <div
         class="mt-10">
-        <p class="text-center font-medium">
+        <p class="text-center font-medium font-poppins">
             Lihat Semua Komentar
             <a href="php/komentar.php" class="inline-block underline"> Disini </a>
         </p>
@@ -420,8 +424,7 @@
                     </div>
 
                     <p class="mx-auto mt-6 max-w-md text-center leading-relaxed text-[#1F2937] lg:text-left">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt consequuntur amet culpa
-                        cum itaque neque.
+                        Temukan lokasi yang Anda cari dan rasakan berbagai fasilitas unggulan yang ditawarkan Kampus UIN Sunan Gunung Djati Bandung.
                     </p>
                 </div>
 
@@ -441,7 +444,7 @@
                 </ul>
             </div>
 
-            <p class="mt-12 text-center text-sm text-[#1F2937] lg:text-right">
+            <p class="mt-12 text-center text-sm text-[#1F2937] lg:text-right font-roboto">
                 Copyright &copy; 2025 By KampEase Group. All rights reserved.
             </p>
         </div>

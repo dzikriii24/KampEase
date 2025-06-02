@@ -67,6 +67,9 @@ if (isset($_POST['submit'])) {
 
     <link rel="stylesheet" href="../css/font.css">
     <link rel="stylesheet" href="../css/hover.css">
+
+    <!--logo web-->
+    <link rel="icon" type="image/ico" href="/KampEase/images/log2.png"/>
 </head>
 
 

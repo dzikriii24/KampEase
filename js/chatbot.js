@@ -36,6 +36,8 @@
                     botReply = 'fst itu ada di lantai 2 gedung utama, dekat dengan perpustakaan.';
                 } else if (userText.includes('dimana')) {
                     botReply = 'Silahkan anda masukan lokasi di keyboard anda.';
+                }else if(userText.includes('operasional')){
+                    botReply = 'Fakultas Sains dan teknologi beroperasi pada jam 06:00 - 18:00';
                 }
 
                 

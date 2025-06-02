@@ -44,6 +44,9 @@ if (!isset($_SESSION['username'])) {
 
         <link rel="stylesheet" href="../css/font.css">
         <link rel="stylesheet" href="../css/hover.css">
+
+        <!--logo web-->
+        <link rel="icon" type="image/ico" href="/KampEase/images/log2.png"/>
     </head>
 
     <body class="min-h-screen flex flex-col justify-start overflow-x-hidden">
@@ -390,7 +393,7 @@ $stmt->close(); // Jangan lupa ditutup
 
                             <div class="max-h-0 peer-checked:max-h-40 overflow-hidden transition-all duration-500 bg-white">
                                 <div class="px-4 py-2 text-gray-700">
-                                    Klik tombol "Sign Up" di pojok kanan atas dan ikuti proses pendaftaran yang tersedia.
+                                    Klik tombol "Registrasi" di pojok kanan atas dan ikuti proses pendaftaran yang tersedia.
                                 </div>
                             </div>
                         </div>
@@ -404,7 +407,7 @@ $stmt->close(); // Jangan lupa ditutup
                             </label>
                             <div class="max-h-0 peer-checked:max-h-40 overflow-hidden transition-all duration-500 bg-white">
                                 <div class="px-4 py-2 text-gray-700">
-                                    Klik tombol "Sign Up" di pojok kanan atas dan ikuti proses pendaftaran yang tersedia.
+                                    Klik Masuk lalu Klik lupa password.
                                 </div>
                             </div>
                         </div>
