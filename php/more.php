@@ -146,7 +146,7 @@
 
                 <div class="sm:flex sm:items-end sm:justify-end px-4 pb-4 sm:pb-6">
                     <a
-                        href="#"
+                        href="pageGedung.php"
                         class="inline-block bg-yellow-300 px-5 py-3 text-center text-xs font-bold text-gray-900 transition hover:bg-yellow-400 rounded-lg">
                         Telusuri Gedung
                     </a>

@@ -1,3 +1,11 @@
+<?php
+$conn = new mysqli("localhost", "root", "", "kamp_ease");
+
+$sql = "SELECT * FROM gedung";
+$result = $conn->query($sql);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en" class="bg-[#F3F4F6]">
 
@@ -17,7 +25,7 @@
     </script>
 
     <!--logo web-->
-    <link rel="icon" type="image/ico" href="/KampEase/images/log2.png"/>
+    <link rel="icon" type="image/ico" href="/KampEase/images/log2.png" />
 
     <!-- Flaticon -->
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
@@ -36,7 +44,7 @@
 </head>
 
 
-<body class="min-h-screen flex flex-col items-center justify-start mx-auto px-4">
+<body class="min-h-screen flex flex-col items-center justify-start mx-auto px-4 overflow-x-hidden">
     <!-- Tombol Back di pojok kiri atas -->
     <a href="javascript:history.back()"
         class="absolute top-4 left-4 z-50 flex items-center space-x-2 bg-white shadow-md rounded-full px-4 py-2 text-gray-800 hover:bg-gray-100 transition">
@@ -77,20 +85,7 @@
         </section>
     </div>
     <!-- Header End -->
-     <label class="poppins-regular bg-[#FFFFFF] aret-[#1F2937] text-[#1F2937] input items-center -mt-5 flex justify-self-center outline-none rounded-xl hover:outline-hidden focus:outline-hidden lg:w-[500px]" style="outline:none;">
-        <svg class="h-[1em] opacity-70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <g
-                stroke-linejoin="round"
-                stroke-linecap="round"
-                stroke-width="2.5"
-                fill="none"
-                stroke="currentColor">
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.3-4.3"></path>
-            </g>
-        </svg>
-        <input type="search" required placeholder="Cari Tempat di Sekitar Kampus" class="poppins-reguler caret-[#1F2937] text-[#1F2937] bg-[#1F2937 ] outline-none lg:p-4 rounded-lg" style="outline:none;" />
-    </label>
+
     <!-- Maps -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mt-10">
         <!-- MAP (2 kolom dari 3) -->
@@ -120,102 +115,78 @@
     </div>
     <!-- Maps End -->
 
+    <label class="mt-10 poppins-regular bg-[#FFFFFF] aret-[#1F2937] text-[#1F2937] input items-center -mt-5 flex justify-self-center outline-none rounded-xl hover:outline-hidden focus:outline-hidden lg:w-[500px]" style="outline:none;">
+        <input type="search" name="q" required placeholder="Cari Tempat di Sekitar Kampus" class="poppins-reguler caret-[#1F2937] text-[#1F2937] bg-[#1F2937 ] outline-none lg:p-4 rounded-lg" style="outline:none;" id="searchInput" onkeyup="searchGedung()" />
+        <button class="hover:text-[#7C3AED] transition-colors duration-300 cursor-pointer" type="submit">
+            <svg class="h-[1em] opacity-70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <g
+                    stroke-linejoin="round"
+                    stroke-linecap="round"
+                    stroke-width="2.5"
+                    fill="none"
+                    stroke="currentColor">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.3-4.3"></path>
+                </g>
+            </svg>
+        </button>
+
+    </label>
     <!-- Ket Gedung -->
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full mt-20">
-        <article class="overflow-hidden rounded-lg border border-gray-100 bg-white shadow-xs">
-            <img
-                alt=""
-                src="https://i.pinimg.com/736x/ac/d5/9c/acd59c9c4c7bc202c2ebede5d1c5ab84.jpg"
-                class="h-56 w-full object-cover" />
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full mt-20" id="gedungTable">
+        <?php while ($row = $result->fetch_assoc()): ?>
+            <article class="overflow-hidden rounded-lg border border-gray-100 bg-white shadow-sm transition hover:shadow-md" id="gedungTable">
+                <img
+                    alt="<?= htmlspecialchars($row['nama_gedung']) ?>"
+                    src="<?= htmlspecialchars($row['foto']) ?>"
+                    class="h-56 w-full object-cover" />
 
-            <div class="p-4 sm:p-6">
-                <a href="#">
-                    <h3 class="text-lg font-medium text-gray-900">
-                        Fakultas Sains dan Teknologi
-                    </h3>
-                </a>
+                <div class="p-4 sm:p-6">
+                    <a href="gedungPage.php?id=<?= $row['id'] ?>">
+                        <h3 class="text-lg font-medium text-gray-900 hover:underline nama_gedung">
+                            <?= htmlspecialchars($row['nama_gedung']) ?>
+                        </h3>
+                    </a>
 
-                <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
-                    Fakultas Sains dan Teknologi adalah salah satu fakultas di UIN SGD Bandung yang
-                    memiliki program studi yang berfokus pada ilmu pengetahuan dan teknologi. Fakultas ini
-                    menawarkan berbagai program studi yang berkaitan dengan sains, teknologi, dan
-                    Komputer.
-                </p>
+                    <p class="mt-2 line-clamp-3 text-sm text-gray-500">
+                        <?= htmlspecialchars(substr($row['deskripsi'], 0, 150)) ?>...
+                    </p>
 
-                <a href="fakultas/fst.php" class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
-                    Lihat Detail Gedung
-
-                    <span aria-hidden="true" class="block transition-all group-hover:ms-0.5 rtl:rotate-180">
-                        &rarr;
-                    </span>
-                </a>
-            </div>
-        </article>
-        <article class="overflow-hidden rounded-lg border border-gray-100 bg-white shadow-xs">
-            <img
-                alt=""
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                class="h-56 w-full object-cover" />
-
-            <div class="p-4 sm:p-6">
-                <a href="#">
-                    <h3 class="text-lg font-medium text-gray-900">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </h3>
-                </a>
-
-                <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                    pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                    mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                    dignissimos. Molestias explicabo corporis voluptatem?
-                </p>
-
-                <a href="wifi/wifi.php" class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
-                    Find out more
-
-                    <span aria-hidden="true" class="block transition-all group-hover:ms-0.5 rtl:rotate-180">
-                        &rarr;
-                    </span>
-                </a>
-            </div>
-        </article>
-        <article class="overflow-hidden rounded-lg border border-gray-100 bg-white shadow-xs">
-            <img
-                alt=""
-                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                class="h-56 w-full object-cover" />
-
-            <div class="p-4 sm:p-6">
-                <a href="#">
-                    <h3 class="text-lg font-medium text-gray-900">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    </h3>
-                </a>
-
-                <p class="mt-2 line-clamp-3 text-sm/relaxed text-gray-500">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
-                    pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis quidem,
-                    mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius atque
-                    dignissimos. Molestias explicabo corporis voluptatem?
-                </p>
-
-                <a href="#" class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600">
-                    Find out more
-
-                    <span aria-hidden="true" class="block transition-all group-hover:ms-0.5 rtl:rotate-180">
-                        &rarr;
-                    </span>
-                </a>
-            </div>
-        </article>
-
+                    <a href="<?= $row['link_detail'] ?>" class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-800">
+                        Lihat Detail Gedung
+                        <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">&rarr;</span>
+                    </a>
+                </div>
+            </article>
+        <?php endwhile; ?>
     </div>
+
+    <script>
+        function searchGedung() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let rows = document.querySelectorAll("#gedungTable article");
+
+            rows.forEach(function(row) {
+                let namaEl = row.querySelector(".nama_gedung");
+                if (!namaEl) return; // skip kalau tidak ada
+
+                let nama = namaEl.textContent.toLowerCase();
+
+                if (nama.includes(input)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+    </script>
+
     <!-- Ket gedung end -->
 
 
     <script src="../js/mapsGedung.js"></script>
 
+    <script src="../js/other.js"></script>
 
 
 </body>
