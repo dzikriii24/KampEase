@@ -2,6 +2,8 @@
 $conn = new mysqli("localhost", "root", "", "kamp_ease");
 session_start();
 
+
+
 if (!isset($_SESSION['username'])) {
     // Tampilkan halaman untuk user yang belum login
 ?>
@@ -54,25 +56,25 @@ if (!isset($_SESSION['username'])) {
         <section class="bg-[#F8F5FF] lg:grid lg:h-screen lg:place-content-center sm:-mt-35">
             <div class="mx-auto w-screen max-w-screen-xl px-4 py-16 sm:px-6 sm:py-8 sm:-mb-10 sm:-pb-10">
                 <div class="mx-auto max-w-prose text-center">
-                    <h1 class="text-4xl font-bold text-gray-800 sm:text-5xl">
+                    <h1 class="text-4xl font-bold text-gray-800 sm:text-5xl poppins-semibold">
                         Jelajahi fitur dan
-                        <strong class="text-[#7C3AED]"> temukan lokasi </strong>
+                        <strong class="text-[#7C3AED] poppins-semibold"> temukan lokasi </strong>
                         dengan mudah
                     </h1>
 
-                    <p class="mt-4 text-base text-pretty text-gray-600 sm:text-lg/relaxed poppins-regular">
+                    <p class="mt-4 text-base text-pretty text-[#1F2937] sm:text-lg/relaxed poppins-regular">
                         Akses berbagai titik penting seperti gedung, Wi-Fi, dan fasilitas lainnya. Masuk untuk memulai pengalaman penuh dan fitur lengkap!
                     </p>
 
                     <div class="mt-6 flex justify-center gap-4">
                         <a
-                            class="inline-block rounded-lg border border-[#7C3AED] bg-[#7C3AED] px-6 py-3 font-medium text-white shadow-sm transition-colors hover:bg-[#6D28D9]"
+                            class="poppins-semibold inline-block rounded-lg border border-[#7C3AED] bg-[#7C3AED] px-6 py-3 font-medium text-white shadow-sm transition-colors hover:bg-[#6D28D9]"
                             href="login.php">
                             Masuk
                         </a>
 
                         <a
-                            class="inline-block rounded-lg border border-[#E5E0FA] px-6 py-3 font-medium text-[#5B21B6] shadow-sm transition-colors hover:bg-[#ECE7FE] hover:text-[#4C1D95]"
+                            class="poppins-semibold inline-block rounded-lg border border-[#E5E0FA] px-6 py-3 font-medium text-[#5B21B6] shadow-sm transition-colors hover:bg-[#ECE7FE] hover:text-[#4C1D95]"
                             href="register.php">
                             Registrasi
                         </a>
@@ -435,12 +437,12 @@ $stmt->close(); // Jangan lupa ditutup
                             </div>
 
                             <!-- Form Komentar -->
-                            <form class="space-y-3">
+                            <form action="functComent.php" method="POST" class="space-y-3">
                                 <label for="komentar" class="block text-sm font-medium text-gray-700">
                                     Pesan atau pertanyaan untuk Kampease
                                 </label>
                                 <div class="relative overflow-hidden rounded border border-purple-300 focus-within:ring-2 focus-within:ring-purple-400">
-                                    <textarea id="komentar" rows="4"
+                                    <textarea name="komentar" id="komentar" rows="4"
                                         class="w-full resize-none border-none p-3 text-sm focus:ring-0 focus:outline-none placeholder:text-gray-400"
                                         placeholder="Tulis komentar Anda di sini..."></textarea>
                                     <div class="flex items-center justify-end gap-2 p-2 bg-white border-t border-purple-100">
@@ -457,28 +459,33 @@ $stmt->close(); // Jangan lupa ditutup
                                 </div>
                                 <input type="hidden" name="rating" id="rating-value" />
                             </form>
+
                         </div>
                         <script>
+                            const form = document.querySelector('form');
                             const stars = document.querySelectorAll('.star');
-                            const ratingValue = document.getElementById('rating-value');
+                            const ratingInput = document.getElementById('rating-value');
+                            const komentarTextarea = document.getElementById('komentar');
 
-                            stars.forEach((star, index) => {
+                            stars.forEach(star => {
                                 star.addEventListener('click', () => {
-                                    const selectedRating = parseInt(star.getAttribute('data-value'));
-                                    ratingValue.value = selectedRating;
+                                    const rating = star.getAttribute('data-value');
+                                    ratingInput.value = rating;
 
-                                    stars.forEach((s, i) => {
-                                        if (i < selectedRating) {
-                                            s.classList.add('text-yellow-400');
-                                            s.classList.remove('text-gray-300');
-                                        } else {
-                                            s.classList.add('text-gray-300');
-                                            s.classList.remove('text-yellow-400');
-                                        }
+                                    stars.forEach(s => {
+                                        s.style.color = (s.getAttribute('data-value') <= rating) ? '#FBBF24' : '#D1D5DB';
                                     });
                                 });
                             });
+
+                            form.addEventListener('submit', function(e) {
+                                if (ratingInput.value === '' || komentarTextarea.value.trim() === '') {
+                                    alert('Mohon isi komentar dan pilih rating terlebih dahulu.');
+                                    e.preventDefault(); // Batalkan pengiriman form
+                                }
+                            });
                         </script>
+
                     </div>
                 </div>
 

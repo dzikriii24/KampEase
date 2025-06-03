@@ -37,18 +37,19 @@
 
 
 <body class="min-h-screen flex flex-col items-center justify-start mx-auto poppins">
-     <a href="javascript:history.back()"
-        class="absolute top-20 left-4 z-50 flex items-center space-x-2 bg-white shadow-md rounded-full px-4 py-2 text-gray-800 hover:bg-gray-100 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
-        </svg>
-    </a>
+
     <div class="navbar bg-base-100 shadow-sm">
-        <div class="flex-1">
-            <a class="btn btn-ghost text-xl">KampEase</a>
+        <a href="javascript:history.back()"
+            class="absolute top-4 left-4 z-50 flex items-center space-x-2 bg-white shadow-md rounded-full px-4 py-2 text-gray-800 hover:bg-gray-100 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+            </svg>
+        </a>
+        <div class="flex-1 items-center justify-center text-center">
+            <a class="btn btn-ghost text-xl">Daftar Tempat di KampEase</a>
         </div>
         <div class="flex gap-2">
-            <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto outline-none" />
+
             <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
                     <div class="w-10 rounded-full">
@@ -61,7 +62,7 @@
         </div>
     </div>
 
-        <!-- Stat -->
+    <!-- Stat -->
     <div class="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-4 mt-16 sm:mt-10">
         <!-- Stat 1 -->
         <div class="stat bg-white rounded-xl shadow-md text-center">

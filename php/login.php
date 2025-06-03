@@ -3,6 +3,8 @@ $conn = new mysqli("localhost", "root", "", "kamp_ease");
 session_start();
 error_reporting(0);
 
+
+
 if (isset($_SESSION['username'])) {
     header("Location: index.php");
 }
@@ -24,7 +26,9 @@ if (isset($_POST['submit'])) {
 
     if ($result->num_rows > 0) {
         $row = mysqli_fetch_assoc($result);
-        $_SESSION['username'] = $row['username'];
+        $_SESSION['user_id'] = $row['id'];        // dipakai buat relasi antar tabel
+        $_SESSION['username'] = $row['username']; // dipakai buat ditampilkan di halaman
+
         $message = "Login berhasil, selamat datang " . $row['username'] . "!";
         $status = 'success';
     } else {

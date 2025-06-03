@@ -57,20 +57,26 @@
     <!-- SEARCH -->
 
     <!-- bikin auto complete untuk search -->
-    <label class="poppins-regular bg-[#FFFFFF] aret-[#1F2937] text-[#1F2937] input items-center -mt-5 flex justify-self-center outline-none rounded-xl hover:outline-hidden focus:outline-hidden lg:w-[500px]" style="outline:none;">
-        <svg class="h-[1em] opacity-70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <g
-                stroke-linejoin="round"
-                stroke-linecap="round"
-                stroke-width="2.5"
-                fill="none"
-                stroke="currentColor">
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.3-4.3"></path>
-            </g>
-        </svg>
-        <input type="search" required placeholder="Cari Tempat di Sekitar Kampus" class="poppins-reguler caret-[#1F2937] text-[#1F2937] bg-[#1F2937 ] outline-none lg:p-4 rounded-lg" style="outline:none;" />
-    </label>
+    <form action="php/cari.php" method="get">
+        <label class="poppins-regular bg-[#FFFFFF] aret-[#1F2937] text-[#1F2937] input items-center -mt-5 flex justify-self-center outline-none rounded-xl hover:outline-hidden focus:outline-hidden lg:w-[500px]" style="outline:none;">
+            <input type="search" name="q" required placeholder="Cari Tempat di Sekitar Kampus" class="poppins-reguler caret-[#1F2937] text-[#1F2937] bg-[#1F2937 ] outline-none lg:p-4 rounded-lg" style="outline:none;" />
+            <button class="hover:text-[#7C3AED] transition-colors duration-300 cursor-pointer" type="submit">
+                 <svg class="h-[1em] opacity-70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <g
+                    stroke-linejoin="round"
+                    stroke-linecap="round"
+                    stroke-width="2.5"
+                    fill="none"
+                    stroke="currentColor">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.3-4.3"></path>
+                </g>
+            </svg>
+            </button>
+
+        </label>
+    </form>
+
     <!-- SEARCH END -->
 
     <!-- CHATBOT -->
@@ -341,6 +347,9 @@
                     Recomend bangett pake inii!
                 </p>
             </div>
+            <div class="text-xs text-gray-400 mt-2">
+                01 Jun 2025 10:50
+            </div>
         </article>
 
         <article class="max-w-xl p-6 bg-white rounded-2xl shadow-md border border-[#E0E0E0]">
@@ -382,11 +391,15 @@
                     UI-nya simpel, fiturnya lengkap, dan pastinya berguna banget buat navigasi di sekitar kampus.
                 </p>
             </div>
+            <div class="text-xs text-gray-400 mt-2">
+                01 Jun 2025 10:50
+            </div>
         </article>
     </div>
     <div
-        class="mt-10">
-        <p class="text-center font-medium font-poppins">
+
+        class="mt-10 poppins-regular">
+        <p class="text-center font-medium">
             Lihat Semua Komentar
             <a href="php/komentar.php" class="inline-block underline"> Disini </a>
         </p>
@@ -422,14 +435,14 @@
                     <div class="flex justify-center text-white lg:justify-start">
                         <img src="images/log2.png" class="w-20" alt="">
                     </div>
-
-                    <p class="mx-auto mt-6 max-w-md text-center leading-relaxed text-[#1F2937] lg:text-left">
+                    <p class="mx-auto mt-6 max-w-md text-center leading-relaxed text-[#1F2937] lg:text-left poppins-regular">
                         Temukan lokasi yang Anda cari dan rasakan berbagai fasilitas unggulan yang ditawarkan Kampus UIN Sunan Gunung Djati Bandung.
+
                     </p>
                 </div>
 
                 <ul
-                    class="mt-12 flex flex-wrap justify-center gap-6 md:gap-8 lg:mt-0 lg:justify-end lg:gap-12 text-white">
+                    class="mt-12 flex flex-wrap justify-center gap-6 md:gap-8 lg:mt-0 lg:justify-end lg:gap-12 text-white poppins-regular">
                     <li>
                         <a class="transition hover:text-gray-700/75" href="#"> About </a>
                     </li>
@@ -444,7 +457,7 @@
                 </ul>
             </div>
 
-            <p class="mt-12 text-center text-sm text-[#1F2937] lg:text-right font-roboto">
+            <p class="mt-12 text-center text-sm text-[#1F2937] lg:text-right poppins-regular">
                 Copyright &copy; 2025 By KampEase Group. All rights reserved.
             </p>
         </div>
