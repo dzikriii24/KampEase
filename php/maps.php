@@ -7,6 +7,11 @@ $sql = "
 
     UNION
 
+    SELECT 'parkiran' AS sumber, id, nama_parkiran AS nama, deskripsi, foto, link_maps AS link, NULL AS operasional, NULL AS linkD
+    FROM parkiran
+
+    UNION
+    
     SELECT 'atm' AS sumber, id, nama_bank AS nama, deskripsi, foto, link_maps AS link, NULL AS operasional, NULL AS linkD
     FROM atm
 ";
