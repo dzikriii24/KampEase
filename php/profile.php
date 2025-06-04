@@ -48,7 +48,7 @@ if (!isset($_SESSION['username'])) {
         <link rel="stylesheet" href="../css/hover.css">
 
         <!--logo web-->
-        <link rel="icon" type="image/ico" href="/KampEase/images/log2.png"/>
+        <link rel="icon" type="image/ico" href="/KampEase/images/log2.png" />
     </head>
 
     <body class="min-h-screen flex flex-col justify-start overflow-x-hidden">
@@ -269,23 +269,26 @@ $stmt->close(); // Jangan lupa ditutup
                 <p class="text-gray-700 sm:col-span-2 dark:text-gray-200"><?php echo $row['status_mahasiswa']; ?></p>
             </div>
             <div class="flex-none mt-5">
-                <button type="button" onclick="my_modal_3.showModal()">
+
+                <label for="my_modal_7" class="btn border-none bg-white">
                     <div class="avatar">
                         <div class="w-20 rounded-full">
                             <img src="<?php echo htmlspecialchars($foto_profile); ?>" />
                         </div>
                     </div>
-                </button>
-                <dialog id="my_modal_3" class="modal">
-                    <div class="modal-box w-auto max-w-[400px] p-0 overflow-hidden">
-                        <form method="dialog">
-                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 z-10">✕</button>
-                        </form>
-                        <img src="<?php echo htmlspecialchars($foto_profile); ?>" alt="Gambar"
-                            class="max-w-full h-auto block" />
-                    </div>
-                </dialog>
+                </label>
 
+                <!-- Put this part before </body> tag -->
+                <input type="checkbox" id="my_modal_7" class="modal-toggle" />
+                <div class="modal" role="dialog">
+                    <div class="modal-box">
+                        <div class="modal-box w-auto p-0 overflow-hidden">
+                            <img src="<?php echo htmlspecialchars($foto_profile); ?>" alt="Gambar"
+                                class="max-w-full h-auto block" />
+                        </div>
+                    </div>
+                    <label class="modal-backdrop" for="my_modal_7">Close</label>
+                </div>
             </div>
         </div>
 
