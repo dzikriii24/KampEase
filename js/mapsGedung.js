@@ -55,9 +55,13 @@
 
 
 
-        // Maps Detaill
+        // FUNGSI YANG DIGUNAKAN KALO TABELNYA ADA JAM BUKA DAN JAM TUTUP
 
-        fetch("getGedung.php")
+    
+
+        //   GEDUNG
+
+        fetch("getData.php?type=gedung")
             .then(response => response.json())
             .then(data => {
                 data.forEach(gedung => {

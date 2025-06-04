@@ -18,3 +18,20 @@ function jam() {
 document.getElementById("jam").innerText = jam();
 
 
+function searchGedung() {
+  let input = document.getElementById("searchInput").value.toLowerCase();
+  let rows = document.querySelectorAll("#gedungTable article");
+
+  rows.forEach(function (row) {
+    let namaEl = row.querySelector(".nama_gedung");
+    if (!namaEl) return; // skip kalau tidak ada
+
+    let nama = namaEl.textContent.toLowerCase();
+
+    if (nama.includes(input)) {
+      row.style.display = "";
+    } else {
+      row.style.display = "none";
+    }
+  });
+}

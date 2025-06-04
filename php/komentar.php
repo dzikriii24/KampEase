@@ -39,20 +39,7 @@
 <body class="min-h-screen flex flex-col items-center justify-start mx-auto">
     <div class="navbar bg-base-100 shadow-sm">
         <div class="navbar-start">
-            <div class="dropdown">
-                <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
-                    </svg>
-                </div>
-                <ul
-                    tabindex="0"
-                    class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                    <li><a>Homepage</a></li>
-                    <li><a>Portfolio</a></li>
-                    <li><a>About</a></li>
-                </ul>
-            </div>
+            
         </div>
         <div class="navbar-center">
             <a class="btn btn-ghost text-xl">daisyUI</a>
@@ -80,7 +67,104 @@
         </svg>
     </a>
 
-    <div class="mt-20 px-10 grid gap-4 grid-cols-1 sm:grid-cols-2">
+    <div class="mt-20 px-10 grid gap-4 grid-cols-1 sm:grid-cols-2 mb-10">
+        <?php
+        $conn = new mysqli("localhost", "root", "", "kamp_ease");
+        $query = "SELECT k.komentar, k.rating, k.tanggal_komentar, 
+                 u.username, u.fotoprofile, u.tanggal_daftar 
+          FROM komentar k 
+          JOIN user u ON k.user_id = u.id 
+          ORDER BY k.tanggal_komentar DESC";
+
+        $result = mysqli_query($conn, $query);
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            $filledStars = intval($row['rating']);
+            $emptyStars = 5 - $filledStars;
+        ?>
+            <article class="max-w-xl p-6 bg-white rounded-2xl shadow-md border border-[#E0E0E0] mb-4">
+                <!-- Header: Profile -->
+                <div class="flex items-center gap-4 mb-4">
+                    <img class="w-10 h-10 rounded-full object-cover" src="<?= htmlspecialchars($row['fotoprofile']) ?>" alt="User photo">
+                    <div>
+                        <p class="text-sm font-semibold text-[#1F2937]"><?= htmlspecialchars($row['username']) ?></p>
+                        <p class="text-xs text-gray-500">Joined <?= date('F Y', strtotime($row['tanggal_daftar'])) ?></p>
+                    </div>
+                </div>
+
+                <!-- Rating -->
+                <div class="flex items-center mb-3">
+                    <div class="flex text-[#A78BFA]">
+                        <?php for ($i = 0; $i < $filledStars; $i++): ?>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path d="M10 15l-5.878 3.09L5.5 12 1 8.91l6.09-.89L10 2l2.91 6.02L19 8.91 14.5 12l1.378 6.09z" />
+                            </svg>
+                        <?php endfor; ?>
+                        <?php for ($i = 0; $i < $emptyStars; $i++): ?>
+                            <svg class="w-4 h-4 text-gray-300 fill-current" viewBox="0 0 20 20">
+                                <path d="M10 15l-5.878 3.09L5.5 12 1 8.91l6.09-.89L10 2l2.91 6.02L19 8.91 14.5 12l1.378 6.09z" />
+                            </svg>
+                        <?php endfor; ?>
+                    </div>
+                    <span class="ml-2 text-xs text-gray-600"><?= $row['rating'] ?> out of 5</span>
+                </div>
+
+                <!-- Review Content -->
+                <div class="text-sm text-[#374151] space-y-2">
+                    <p><?= nl2br(htmlspecialchars($row['komentar'])) ?></p>
+                </div>
+
+                <!-- Tanggal komentar -->
+                <div class="text-xs text-gray-400 mt-2">
+                    <?= date('d M Y, H:i', strtotime($row['tanggal_komentar'])) ?>
+                </div>
+            </article>
+
+        <?php } ?>
+        <article class="max-w-xl p-6 bg-white rounded-2xl shadow-md border border-[#E0E0E0]">
+            <!-- Header: Profile -->
+            <div class="flex items-center gap-4 mb-4">
+                <img class="w-10 h-10 rounded-full object-cover" src="https://i.pinimg.com/736x/49/2a/cc/492accfe16c0d606e7b2372dd963e10b.jpg" alt="User photo">
+                <div>
+                    <p class="text-sm font-semibold text-[#1F2937]">Ratna</p>
+                    <p class="text-xs text-gray-500">Joined August 2023</p>
+                </div>
+            </div>
+
+            <!-- Rating -->
+            <div class="flex items-center mb-3">
+                <div class="flex text-[#A78BFA]">
+                    <!-- 4 filled stars -->
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                        <path d="M10 15l-5.878 3.09L5.5 12 1 8.91l6.09-.89L10 2l2.91 6.02L19 8.91 14.5 12l1.378 6.09z" />
+                    </svg>
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                        <path d="M10 15l-5.878 3.09L5.5 12 1 8.91l6.09-.89L10 2l2.91 6.02L19 8.91 14.5 12l1.378 6.09z" />
+                    </svg>
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                        <path d="M10 15l-5.878 3.09L5.5 12 1 8.91l6.09-.89L10 2l2.91 6.02L19 8.91 14.5 12l1.378 6.09z" />
+                    </svg>
+                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                        <path d="M10 15l-5.878 3.09L5.5 12 1 8.91l6.09-.89L10 2l2.91 6.02L19 8.91 14.5 12l1.378 6.09z" />
+                    </svg>
+                </div>
+                <span class="ml-2 text-xs text-gray-600">4 out of 5</span>
+            </div>
+
+            <!-- Review Content -->
+            <div class="text-sm text-[#374151] space-y-2">
+                <p>
+                    KampEase sangat membantu saya sebagai mahasiswa baru. Sekarang saya nggak perlu tanya-tanya lagi kalau mau cari gedung kuliah atau tempat makan!
+                </p>
+                <p>
+                    UI-nya simpel, fiturnya lengkap, dan pastinya berguna banget buat navigasi di sekitar kampus.
+                </p>
+            </div>
+             <div class="text-xs text-gray-400 mt-2">
+                    01 Jun 2025 10:30
+                </div>
+        </article>
+
         <article class="max-w-xl p-6 bg-white rounded-2xl shadow-md border border-[#E0E0E0]">
             <!-- Header: Profile -->
             <div class="flex items-center gap-4 mb-4">
@@ -123,50 +207,11 @@
                     Recomend bangett pake inii!
                 </p>
             </div>
+            <div class="text-xs text-gray-400 mt-2">
+                    01 Jun 2025 10:50
+                </div>
         </article>
 
-        <article class="max-w-xl p-6 bg-white rounded-2xl shadow-md border border-[#E0E0E0]">
-            <!-- Header: Profile -->
-            <div class="flex items-center gap-4 mb-4">
-                <img class="w-10 h-10 rounded-full object-cover" src="https://i.pinimg.com/736x/49/2a/cc/492accfe16c0d606e7b2372dd963e10b.jpg" alt="User photo">
-                <div>
-                    <p class="text-sm font-semibold text-[#1F2937]">Ratna</p>
-                    <p class="text-xs text-gray-500">Joined August 2023</p>
-                </div>
-            </div>
-
-            <!-- Rating -->
-            <div class="flex items-center mb-3">
-                <div class="flex text-[#A78BFA]">
-                    <!-- 4 filled stars -->
-                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                        <path d="M10 15l-5.878 3.09L5.5 12 1 8.91l6.09-.89L10 2l2.91 6.02L19 8.91 14.5 12l1.378 6.09z" />
-                    </svg>
-                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                        <path d="M10 15l-5.878 3.09L5.5 12 1 8.91l6.09-.89L10 2l2.91 6.02L19 8.91 14.5 12l1.378 6.09z" />
-                    </svg>
-                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                        <path d="M10 15l-5.878 3.09L5.5 12 1 8.91l6.09-.89L10 2l2.91 6.02L19 8.91 14.5 12l1.378 6.09z" />
-                    </svg>
-                    <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                        <path d="M10 15l-5.878 3.09L5.5 12 1 8.91l6.09-.89L10 2l2.91 6.02L19 8.91 14.5 12l1.378 6.09z" />
-                    </svg>
-                </div>
-                <span class="ml-2 text-xs text-gray-600">4 out of 5</span>
-            </div>
-
-            <!-- Review Content -->
-            <div class="text-sm text-[#374151] space-y-2">
-                <p>
-                    KampEase sangat membantu saya sebagai mahasiswa baru. Sekarang saya nggak perlu tanya-tanya lagi kalau mau cari gedung kuliah atau tempat makan!
-                </p>
-                <p>
-                    UI-nya simpel, fiturnya lengkap, dan pastinya berguna banget buat navigasi di sekitar kampus.
-                </p>
-            </div>
-        </article>
-
-        
     </div>
 </body>
 

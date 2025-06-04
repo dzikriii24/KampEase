@@ -1,3 +1,20 @@
+<?php
+$conn = new mysqli("localhost", "root", "", "kamp_ease");
+
+$sql = "
+    SELECT 'gedung' AS sumber, id, nama_gedung AS nama, deskripsi, foto, link_maps AS link, operasional AS operasional, link_detail AS linkD
+    FROM gedung
+
+    UNION
+
+    SELECT 'atm' AS sumber, id, nama_bank AS nama, deskripsi, foto, link_maps AS link, NULL AS operasional, NULL AS linkD
+    FROM atm
+";
+
+$result = $conn->query($sql);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="bg-[#F3F4F6]">
 
@@ -32,7 +49,7 @@
     <link rel="stylesheet" href="../css/hover.css">
 
     <!--logo web-->
-    <link rel="icon" type="image/ico" href="/KampEase/images/log2.png"/>
+    <link rel="icon" type="image/ico" href="/KampEase/images/log2.png" />
 
 </head>
 
@@ -147,6 +164,72 @@
 
     <!-- MAPS & DESK END -->
 
+    <label class="mt-10 poppins-regular bg-[#FFFFFF] aret-[#1F2937] text-[#1F2937] input items-center -mt-5 flex justify-self-center outline-none rounded-xl hover:outline-hidden focus:outline-hidden lg:w-[500px]" style="outline:none;">
+        <input type="search" name="q" required placeholder="Cari Tempat di Sekitar Kampus" class="poppins-reguler caret-[#1F2937] text-[#1F2937] bg-[#1F2937 ] outline-none lg:p-4 rounded-lg" style="outline:none;" id="searchInput" onkeyup="searchMaps()" />
+        <button class="hover:text-[#7C3AED] transition-colors duration-300 cursor-pointer" type="submit">
+            <svg class="h-[1em] opacity-70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <g
+                    stroke-linejoin="round"
+                    stroke-linecap="round"
+                    stroke-width="2.5"
+                    fill="none"
+                    stroke="currentColor">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.3-4.3"></path>
+                </g>
+            </svg>
+        </button>
+
+    </label>
+    <!-- ALL MAP -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full mt-20 px-4 mx-auto" id="searchMaps">
+        <?php while ($row = $result->fetch_assoc()): ?>
+            <article class="overflow-hidden rounded-lg border border-gray-100 bg-white shadow-sm transition hover:shadow-md " id="searchMaps">
+                <img
+                    alt="<?= htmlspecialchars($row['nama']) ?>"
+                    src="<?= htmlspecialchars($row['foto']) ?>"
+                    class="h-56 w-full object-cover" />
+                <div class="p-4 sm:p-6">
+                    <p class="mt-2 line-clamp-3 text-xl nama_tempats">
+                        <?= htmlspecialchars($row['nama']) ?>
+                    </p>
+
+                     <p class="mt-2 line-clamp-3 text-sm text-gray-500">
+                        <?= htmlspecialchars(substr($row['deskripsi'], 0, 150)) ?>...
+                    </p>
+                    <?php if ($row['sumber'] === 'gedung'): ?>
+                   
+                    <dl class="mt-6 flex gap-4 lg:gap-6">
+                        <div>
+                            <dt class="text-sm font-medium text-gray-700">Jam Operasional</dt>
+
+                            <dd class="text-xs text-gray-700 mt-[6px]"><?= htmlspecialchars($row['operasional']) ?></dd>
+                        </div>
+
+                        <div>
+                            <dt class="text-sm font-medium text-gray-700">Lihat Detail Gedung</dt>
+
+                            <a href="<?= htmlspecialchars($row['linkD']) ?>" class="text-xs text-blue-700">Lihat Disini</a>
+                        </div>
+                    </dl>
+                    <?php endif; ?>
+
+
+
+                    <a href="<?= htmlspecialchars($row['link']) ?>" target="_blank" class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-800">
+                        Lihat di Maps
+                        <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">&rarr;</span>
+                    </a>
+
+
+
+                </div>
+            </article>
+        <?php endwhile; ?>
+    </div>
+
+    <!-- ALL MAP END -->
+
     <!-- FIXED MENU -->
     <div class="z-30 dock text-[#1F2937]-content bg-[#DDD6FE]/70 rounded-tr-[90px] rounded-tl-[90px] sm:w-[400px] w-[388px] flex justify-center justify-self-center poppins-regular">
         <a href="/kampEase/index.php">
@@ -176,7 +259,25 @@
     <br>
     <br>
     <script src="../js/maps.js"></script>
+    <script script>
+        function searchMaps() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let rows = document.querySelectorAll("#searchMaps article");
 
+            rows.forEach(function(row) {
+                let namaEl = row.querySelector(".nama_tempats");
+                if (!namaEl) return; // skip kalau tidak ada
+
+                let nama = namaEl.textContent.toLowerCase();
+
+                if (nama.includes(input)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+    </script>
 
 
 </body>
