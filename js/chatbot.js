@@ -31,16 +31,19 @@
                 if (userText.includes('wifi')) {
                     botReply = 'Kamu bisa menemukan WiFi gratis di sekitar kantin kampus dan perpustakaan.';
                 } else if (userText.includes('lc')) {
-                    botReply = 'buka setiap hari jam 10';
-                } else if (userText.includes('dimana')|| userText.includes('fst')) {
-                    botReply = 'fst itu ada di lantai 2 gedung utama, dekat dengan perpustakaan.';
+                    botReply = 'LC buka setiap hari jam 10.';
+                } else if (userText.includes('operasional') && userText.includes('fst')) {
+                    botReply = 'Jam operasional FST adalah 06:00 - 18:00.';
+                } else if (userText.includes('operasional')) {
+                    botReply = 'Silahkan sebutkan lokasi yang ingin ditanyakan operasionalnya.';
+                } else if (userText.includes('dimana') && userText.includes('fst')) {
+                    botReply = 'FST itu ada di lantai 2 gedung utama, dekat dengan perpustakaan.';
                 } else if (userText.includes('dimana')) {
-                    botReply = 'Silahkan anda masukan lokasi di keyboard anda.';
-                }else if(userText.includes('operasional')){
-                    botReply = 'Fakultas Sains dan teknologi beroperasi pada jam 06:00 - 18:00';
+                    botReply = 'Silahkan anda masukkan lokasi yang ingin dicari.';
                 }
 
-                
+
+
 
                 setTimeout(() => {
                     this.messages.push({
