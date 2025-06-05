@@ -440,11 +440,11 @@
 
     <div class="mt-8 w-full max-w-full px-4">
         <div class="collapse bg-base-100 shadow-md rounded-xl">
-            <input type="checkbox" class="peer hidden" id="collapse-fst2" />
+            <input type="checkbox" class="peer hidden" id="collapse-fst4" />
 
             <!-- Header -->
-            <label for="collapse-fst2" class="collapse-title btn btn-ghost text-xl text-left w-full rounded-t-xl">
-                Lantai 2 FST
+            <label for="collapse-fst4" class="collapse-title btn btn-ghost text-xl text-left w-full rounded-t-xl">
+                Lantai 4 FST
             </label>
 
             <!-- Isi Dropdown -->
