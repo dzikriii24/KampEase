@@ -15,8 +15,8 @@
 
         const icons = {
             gedung: L.icon({
-                iconUrl: '../images/icons/iconGedung.png',
-                iconSize: [20, 20],
+                iconUrl: '../images/icons/gedung1.png',
+                iconSize: [22, 22],
                 iconAnchor: [12, 25],
                 popupAnchor: [0, -25]
             }),
@@ -39,26 +39,26 @@
                 popupAnchor: [0, -25]
             }),
             mini_market: L.icon({
-                iconUrl: '../images/icons/shop.png',
-                iconSize: [20, 20],
+                iconUrl: '../images/market.png',
+                iconSize: [30, 30],
                 iconAnchor: [12, 25],
                 popupAnchor: [0, -25]
             }),
             mushalla: L.icon({
-                iconUrl: '../images/icons/mosque.png',
-                iconSize: [20, 20],
+                iconUrl: '../images/mushalla.png',
+                iconSize: [30, 30],
                 iconAnchor: [12, 25],
                 popupAnchor: [0, -25]
             }),
             wifi: L.icon({
-                iconUrl: '../images/icons/iconWifi.png',
+                iconUrl: '../images/wifi.png',
                 iconSize: [20, 20],
                 iconAnchor: [12, 25],
                 popupAnchor: [0, -25]
             }),
             atm: L.icon({
-                iconUrl: '../images/icons/atm.png',
-                iconSize: [20, 20],
+                iconUrl: '../images/icons/amt.png',
+                iconSize: [30, 30],
                 iconAnchor: [12, 25],
                 popupAnchor: [0, -25]
             }),
@@ -69,7 +69,7 @@
                 popupAnchor: [0, -25]
             }),
             parkiran: L.icon({
-                iconUrl: '../images/icons/parkir.png',
+                iconUrl: '../images/parkings.png',
                 iconSize: [20, 20],
                 iconAnchor: [12, 25],
                 popupAnchor: [0, -25]
@@ -113,11 +113,12 @@
         // FUNGSI YANG DIGUNAKAN KALO TABELNYA ADA JAM BUKA DAN JAM TUTUP
 
         function renderInfoPanelBiasa(data, type = "default") {
+            const defaultFoto ="https://i.pinimg.com/736x/f5/5d/5e/f55d5e6e343744170be0033eaf8fa304.jpg";
             return `
               <button onclick="foto.showModal()">
             <img  style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"
             alt=""
-            src="${data.foto}"
+            src="${data.foto || defaultFoto}"
              class="h-60 mx-auto w-[430px] object-cover sm:h-60 lg:h-96"/>
         </button>
 
@@ -126,7 +127,7 @@
                     <form method="dialog">
                         <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 z-10">✕</button>
                     </form>
-                    <img src="${data.foto}" alt="Gambar"
+                    <img src="${data.foto||defaultFoto}" alt="Gambar"
                         class="max-w-full h-auto block" />
                 </div>
             </dialog>
@@ -135,7 +136,7 @@
         <div class="mt-2 rounded-lg p-4 poppins-regular" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
             <dl>
                 <div>
-                    <dd class="font-medium">${data.nama_bank || data.nama_kantin || data.nama_lapangan  || data.nama_masjid || data.nama_parkiran}</dd>
+                    <dd class="font-medium">${data.nama_bank || data.nama_kantin || data.nama_lapangan  || data.nama_masjid || data.nama_parkiran || data.nama_wifi}</dd>
                 </div>
                 <div>
                     <p class="text-[12px] text-gray-500 w-full">Koordinat</p>
@@ -150,7 +151,7 @@
                     <div class="mt-1.5 sm:mt-0">
                         <p class="text-[#1F2937]">Nama ${type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()}</p>
 
-                        <p class="font-lg nunito-regular text-gray-500">${data.nama_bank || data.nama_kantin || data.nama_lapangan || data.nama_masjid || data.nama_parkiran}</p>
+                        <p class="font-lg nunito-regular text-gray-500">${data.nama_bank || data.nama_kantin || data.nama_lapangan || data.nama_masjid || data.nama_parkiran || data.nama_wifi}</p>
                     </div>
                 </div>
 
@@ -160,7 +161,7 @@
 
                 <p class="text-[#1F2937] mt-3">Deskripsi ${type.charAt(0).toUpperCase() + type.slice(1).toLowerCase()}</p>
 
-                <p class="font-lg nunito-regular text-gray-500">${data.deskripsi}</p>
+                <p class="font-lg nunito-regular text-gray-500">${data.deskripsi || data.password_wifi}</p>
 
                 <br/>
 
@@ -184,11 +185,14 @@
         `
         }
 
+        
         function renderInfoPanelJam(data, type = "default") {
+            
+            const defaultFoto = "https://i.pinimg.com/736x/ca/d0/dd/cad0ddcaa27baf0c8c5b1f246806c06f.jpg"
             return `
         <button onclick="foto.showModal()">
             <img style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;" 
-                 src="${data.foto}" alt="" 
+                 src="${data.foto || defaultFoto}" alt="" 
                  class="h-60 mx-auto w-[430px] object-cover sm:h-60 lg:h-96"/>
         </button>
 
@@ -197,7 +201,7 @@
                 <form method="dialog">
                     <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 z-10">✕</button>
                 </form>
-                <img src="${data.foto}" alt="Gambar" class="max-w-full h-auto block" />
+                <img src="${data.foto ||defaultFoto}" alt="Gambar" class="max-w-full h-auto block" />
             </div>
         </dialog>
 
@@ -275,6 +279,8 @@
             });
 
 
+
+
         fetch("getData.php?type=masjid")
             .then(response => response.json())
             .then(data => {
@@ -295,6 +301,31 @@
                     );
                     marker.on("click", () => {
                         document.getElementById("info-panel").innerHTML = renderInfoPanelBiasa(masjid, "masjid");
+                    });
+                });
+            });
+
+
+        fetch("getData.php?type=wifi")
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(wifi => {
+                    const marker = L.marker([wifi.koordinat_lat, wifi.koordinat_lng], {
+                        icon: icons.wifi
+                    }).addTo(map);
+
+                    // Tambahkan tooltip saat hover
+                    marker.bindTooltip(
+                        `<div class="tooltip rounded-xl" data-tip="${wifi.nama_wifi}">Wifi<br/>${wifi.nama_wifi}</div>`, {
+                            direction: 'top',
+                            permanent: false,
+                            className: 'custom-tooltip',
+                            sticky: true,
+                            opacity: 0.6
+                        }
+                    );
+                    marker.on("click", () => {
+                        document.getElementById("info-panel").innerHTML = renderInfoPanelBiasa(wifi, "wifi");
                     });
                 });
             });
@@ -357,7 +388,7 @@
                     });
                 });
             });
-            fetch("getData.php?type=minimarket")
+        fetch("getData.php?type=minimarket")
             .then(res => res.json())
             .then(data => {
                 data.forEach(minimarket => {
@@ -398,12 +429,13 @@
                         }
                     );
                     marker.on("click", () => {
+                        const defaultFoto = "https://i.pinimg.com/736x/98/c0/65/98c0650eaa99457bbc84c17f05a6b69f.jpg";
                         document.getElementById("info-panel").innerHTML = `
 
                     
         <button onclick="foto.showModal()" style="cursor: pointer;">
             <img
-                src="${gedung.foto}"
+                src="${gedung.foto || defaultFoto}"
                 style="cursor: pointer; box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"
                 class="h-60 mx-auto w-[430px] object-cover sm:h-60 lg:h-96"
             />
@@ -415,7 +447,7 @@
                     <form method="dialog">
                         <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 z-10">✕</button>
                     </form>
-                    <img src="${gedung.foto}" alt="Gambar"
+                    <img src="${gedung.foto || defaultFoto}" alt="Gambar"
                         class="max-w-full h-auto block" />
                 </div>
             </dialog>

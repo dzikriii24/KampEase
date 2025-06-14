@@ -70,15 +70,15 @@ $sqlMasjid = "SELECT 'masjid' AS sumber, id, nama_masjid AS nama, deskripsi AS d
         FROM masjid
         WHERE nama_masjid LIKE '%$q%' OR deskripsi LIKE '%$q%'";
 $resultMasjid = $conn->query($sqlMasjid);
-while ($row = $resultMasjid->fetch_assoc()){
-        $hasil[] = $row;
+while ($row = $resultMasjid->fetch_assoc()) {
+    $hasil[] = $row;
 }
 
 $sqlMinimarket = "SELECT 'minimarket' AS sumber, id, nama_minimarket AS nama, deskripsi AS detail, foto AS foto, link_maps AS link, jam_buka AS buka, jam_tutup AS tutup
         FROM minimarket
         WHERE nama_minimarket LIKE '%$q%' OR deskripsi LIKE '%$q%'";
 $resultMinmar = $conn->query($sqlMinimarket);
-while ($row = $resultMinmar -> fetch_assoc()){
+while ($row = $resultMinmar->fetch_assoc()) {
     $hasil[] = $row;
 }
 
@@ -86,10 +86,17 @@ $sqlParkiran = "SELECT 'parkiran' AS sumber, id, nama_parkiran AS nama, deskrips
         FROM parkiran
         WHERE nama_parkiran LIKE '%$q%' OR deskripsi LIKE '%$q%'";
 $resultParkiran = $conn->query($sqlParkiran);
-while ($row = $resultParkiran->fetch_assoc()){
-        $hasil[] = $row;
+while ($row = $resultParkiran->fetch_assoc()) {
+    $hasil[] = $row;
 }
 
+$sqlRuang = "SELECT 'ruang' AS sumber, id, nama_ruang AS nama, deskripsi AS detail, detail_tempat AS detail_tempats
+        FROM ruang
+        WHERE nama_ruang LIKE '%$q%' OR deskripsi LIKE '%$q%'";
+$resultRuang = $conn->query($sqlRuang);
+while ($row = $resultRuang->fetch_assoc()) {
+    $hasil[] = $row;
+}
 // Tambahkan query untuk komentar jika perlu, dan tabel lainnya...
 
 ?>
@@ -151,8 +158,9 @@ while ($row = $resultParkiran->fetch_assoc()){
                 <div href="#" class="card block rounded-lg p-4 bg-white" style="box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;">
                     <img
                         alt=""
-                        src="<?= htmlspecialchars($item['foto']) ?>"
+                        src="<?= htmlspecialchars(!empty($item['foto']) ? $item['foto'] : '../images/gedung3d.png') ?>"
                         class="h-56 w-full rounded-md object-cover" />
+
 
                     <div class="mt-2">
                         <dl>
@@ -173,10 +181,18 @@ while ($row = $resultParkiran->fetch_assoc()){
                             <div class="mt-2">
                                 <p class="text-sm text-gray-500">Password: <?= htmlspecialchars($item['detail']) ?></p>
                             </div>
-                        
-                        <?php elseif ($item['sumber'] === 'kantin' || $item['sumber'] ==='lapangan' || $item['sumber']==='masjid' || $item['sumber'] ==='parkiran'): ?>
+
+                        <?php elseif ($item['sumber'] === 'kantin' || $item['sumber'] === 'lapangan' || $item['sumber'] === 'masjid' || $item['sumber'] === 'parkiran'): ?>
                             <div class="mt-2">
                                 <p class="text-sm text-gray-500"><?= htmlspecialchars($item['detail']) ?></p>
+                            </div>
+
+                        <?php elseif ($item['sumber'] === 'ruang'): ?>
+                            <div class="mt-2">
+                                <p class="text-sm text-gray-500"><?= htmlspecialchars($item['detail']) ?></p>
+                            </div>
+                            <div class="mt-2">
+                                <p class="text-sm text-gray-500"><?= htmlspecialchars($item['detail_tempats']) ?></p>
                             </div>
 
                         <?php elseif ($item['sumber'] === 'fotokopi' || $item['sumber'] === 'minimarket'): ?>
@@ -202,7 +218,8 @@ while ($row = $resultParkiran->fetch_assoc()){
                                 </div>
                             </dl>
 
-                            <?php elseif ($item['sumber'] === 'gedung'): ?>
+
+                        <?php elseif ($item['sumber'] === 'gedung'): ?>
                             <div class="mt-6 flex items-center gap-8">
                                 <p class="mt-1 text-sm text-gray-700">
                                     <?= htmlspecialchars($item['detail']) ?>

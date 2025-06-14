@@ -98,41 +98,42 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html lang="en" class="bg-[#7C3AED]">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gedung UIN SGD</title>
+    <title>Lupa Password</title>
+        <link rel="icon" type="image/ico" href="../images/log2.png" />
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <script>
-        window.scrollTo(0, 0);
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Flaticon -->
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-chubby/css/uicons-solid-chubby.css'>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css'>
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <script>
+            window.scrollTo(0, 0);
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- Flaticon -->
+        <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
+        <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-chubby/css/uicons-solid-chubby.css'>
+        <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+        <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css'>
 
-    <!-- FONT -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <!-- FONT -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="../css/font.css">
-    <link rel="stylesheet" href="../css/hover.css">
-    <link rel="stylesheet" href="../css/loading.css">
+        <link rel="stylesheet" href="../css/font.css">
+        <link rel="stylesheet" href="../css/hover.css">
+        <link rel="stylesheet" href="../css/loading.css">
 
-    <!--logo web-->
-    <link rel="icon" type="image/ico" href="/KampEase/images/log2.png"/>
+        <!--logo web-->
+        <link rel="icon" type="image/ico" href="/KampEase/images/log2.png" />
 </head>
 
 
@@ -151,22 +152,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <!-- component -->
     <!-- Container -->
-    <div class="flex min-h-screen w-full items-center justify-center bg-[#F8F5FF] px-4 py-10">
+    <div class="flex min-h-screen w-full items-center justify-center bg-[#Ffff] px-4 py-10">
         <!-- Login container -->
         <div class="flex w-full max-w-5xl overflow-hidden rounded-xl shadow-xl bg-white">
             <!-- Login form -->
             <div class="w-full md:w-1/2 p-8 md:p-12">
                 <!-- Heading -->
-                <h1 class="text-3xl font-bold text-gray-800 mb-1">Lupa Password?</h1>
-                <p class="text-sm text-gray-500 mb-6">Silahkan Masukan Email dan Password Baru</p>
+                <h1 class="text-3xl font-bold text-gray-800 mb-1 poppins-bold">Lupa Password?</h1>
+                <p class="text-sm text-[#7C3AED] mb-6 poppins-regular">Silahkan Masukan Email dan Password Baru</p>
 
                 <!-- Form -->
                 <form class="space-y-4" method="POST" onsubmit="showLoader()">
                     <div>
-                        <label for="email" class="block text-sm font-medium mb-1 text-gray-700">Masukan Email</label>
+                        <label for="email" class="block text-sm font-medium mb-1 text-gray-700 poppins-regular">Masukan Email</label>
                         <div class="flex rounded-md shadow-sm">
                             <span
-                                class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-100 text-gray-500 text-sm">
+                                class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-[#7C3AED] text-white text-sm">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
@@ -181,21 +182,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 </svg>
                             </span>
                             <input type="email" placeholder="jhonpork@example.com" name="email" id="email" required
-                                class="w-full rounded-r-md border border-gray-300 px-4 py-2 text-sm text-gray-700 focus:border-[#7C3AED] focus:ring-[#7C3AED] focus:outline-none" />
+                                class="w-full rounded-r-md border border-gray-300 px-4 py-2 text-sm text-gray-700 focus:border-[#7C3AED] focus:ring-[#7C3AED] focus:outline-none poppins-regular" />
                         </div>
                     </div>
 
                     <div>
-                        <label for="password" class="block text-sm font-medium mb-1 text-gray-700">Masukan Password</label>
+                        <label for="password" class="block text-sm font-medium mb-1 text-gray-700 poppins-regular">Masukan Password Baru</label>
                         <div class="flex rounded-md shadow-sm">
-                            <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-100 text-gray-500 text-sm">
+                            <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-[#7C3AED] text-white text-sm">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M8 0a4 4 0 0 1 4 4v2.05a2.5 2.5 0 0 1 2 2.45v5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 13.5v-5a2.5 2.5 0 0 1 2-2.45V4a4 4 0 0 1 4-4m0 1a3 3 0 0 0-3 3v2h6V4a3 3 0 0 0-3-3" />
                                 </svg>
                             </span>
                             <div class="relative w-full">
                                 <input type="password" placeholder="••••••••" name="new_password" id="password" required
-                                    class="w-full rounded-r-md border border-gray-300 px-4 py-2 text-sm text-gray-700 focus:border-[#7C3AED] focus:ring-[#7C3AED] focus:outline-none" />
+                                    class="w-full rounded-r-md border border-gray-300 px-4 py-2 text-sm text-gray-700 focus:border-[#7C3AED] focus:ring-[#7C3AED] focus:outline-none poppins-regular" />
                                 <button type="button" onclick="togglePassword()"
                                     class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">
                                     👁
@@ -206,13 +207,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                     </div>
                     <button type="submit" name="submit"
-                        class="w-full rounded-md bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-medium py-2 transition duration-200">
+                        class="poppins-semibold w-full rounded-md bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-medium py-2 transition duration-200">
                         Verifikasi
                     </button>
                 </form>
 
                 <!-- Sign up link -->
-                <p class="text-center text-sm mt-6 text-gray-600">
+                <p class="text-center text-sm mt-6 text-gray-600 poppins-regular">
                     Belum punya akun?
                     <a href="#" class="text-[#7C3AED] font-semibold hover:underline">Daftar sekarang</a>
                 </p>

@@ -5,7 +5,7 @@ error_reporting(0);
 
 
 
-if (isset($_SESSION['username'])) {
+if (isset($_SESSION['user_id'])) {
     header("Location: index.php");
 }
 
@@ -28,8 +28,7 @@ if (isset($_POST['submit'])) {
         $row = mysqli_fetch_assoc($result);
         $_SESSION['user_id'] = $row['id'];        // dipakai buat relasi antar tabel
         $_SESSION['username'] = $row['username']; // dipakai buat ditampilkan di halaman
-
-        $message = "Login berhasil, selamat datang " . $row['username'] . "!";
+        $message = "Login berhasil, selamat datang " . $row['username_vis'] . "!";
         $status = 'success';
     } else {
         $message = "Password atau Email Salah, Silahkan Coba Lagi";
@@ -40,12 +39,13 @@ if (isset($_POST['submit'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en" class="bg-[#7C3AED]">
+<html lang="en" class="">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gedung UIN SGD</title>
+    <title>Login KampEase</title>
+    <link rel="icon" type="image/ico" href="../images/log2.png"/>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -94,16 +94,17 @@ if (isset($_POST['submit'])) {
             <!-- Login form -->
             <div class="w-full md:w-1/2 p-8 md:p-12">
                 <!-- Heading -->
-                <h1 class="text-3xl font-bold text-gray-800 mb-1">Selamat datang di KampEase!</h1>
-                <p class="text-sm text-gray-500 mb-6">Masukkan detail akun kamu untuk login</p>
+                <h1 class="text-3xl font-bold text-gray-800 mb-1 poppins-bold">Selamat datang di 
+                    <p class="text-[#7C3AED]">KampEase!</p></h1>
+                <p class="text-sm text-gray-500 mb-6 poppins-regular">Masukkan detail akun kamu untuk login</p>
 
                 <!-- Form -->
                 <form class="space-y-4" method="POST">
                     <div>
-                        <label for="email" class="block text-sm font-medium mb-1 text-gray-700">Masukan Email</label>
+                        <label for="email" class="block text-sm font-medium mb-1 text-gray-700 poppins-regular">Masukan Email</label>
                         <div class="flex rounded-md shadow-sm">
                             <span
-                                class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-100 text-gray-500 text-sm">
+                                class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-[#7C3AED] text-white text-sm">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     fill="none"
@@ -118,14 +119,14 @@ if (isset($_POST['submit'])) {
                                 </svg>
                             </span>
                             <input type="email" placeholder="jhonpork@example.com" name="email" id="email" required value="<?php echo $email; ?>"
-                                class="w-full rounded-r-md border border-gray-300 px-4 py-2 text-sm text-gray-700 focus:border-[#7C3AED] focus:ring-[#7C3AED] focus:outline-none" />
+                                class="w-full rounded-r-md border border-gray-300 px-4 py-2 text-sm text-gray-700 focus:border-[#7C3AED] focus:ring-[#7C3AED] focus:outline-none poppins-regular" />
                         </div>
                     </div>
                     <!-- password -->
                     <div>
-                        <label for="password" class="block text-sm font-medium mb-1 text-gray-700">Masukan Password</label>
+                        <label for="password" class="block text-sm font-medium mb-1 text-gray-700 poppins-regular">Masukan Password</label>
                         <div class="flex rounded-md shadow-sm">
-                            <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-100 text-gray-500 text-sm">
+                            <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-[#7C3AED] text-white text-sm">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M8 0a4 4 0 0 1 4 4v2.05a2.5 2.5 0 0 1 2 2.45v5a2.5 2.5 0 0 1-2.5 2.5h-7A2.5 2.5 0 0 1 2 13.5v-5a2.5 2.5 0 0 1 2-2.45V4a4 4 0 0 1 4-4m0 1a3 3 0 0 0-3 3v2h6V4a3 3 0 0 0-3-3" />
                                 </svg>
@@ -145,17 +146,17 @@ if (isset($_POST['submit'])) {
 
                     <div class="flex items-center justify-between text-sm">
 
-                        <a href="lupaPW.php" class="text-[#7C3AED] hover:underline font-medium">Lupa password?</a>
+                        <a href="lupaPW.php" class="text-[#7C3AED] hover:underline font-medium poppins-regular">Lupa password?</a>
                     </div>
 
                     <button type="submit" name="submit"
-                        class="w-full rounded-md bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-medium py-2 transition duration-200">
+                        class="poppins-semibold w-full rounded-md bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-medium py-2 transition duration-200">
                         Masuk
                     </button>
                 </form>
 
                 <!-- Sign up link -->
-                <p class="text-center text-sm mt-6 text-gray-600">
+                <p class="text-center poppins-regular text-sm mt-6 text-gray-600">
                     Belum punya akun?
                     <a href="register.php" class="text-[#7C3AED] font-semibold hover:underline">Daftar sekarang</a>
                 </p>

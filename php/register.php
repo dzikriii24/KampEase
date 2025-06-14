@@ -24,6 +24,7 @@ if (isset($_SESSION['username'])) {
 
 if (isset($_POST['submit'])) {
     $username = $_POST['username'] ?? '';
+    $username_vis = $_POST['username']??'';
     $email = $_POST['email'] ?? '';
     $password = md5($_POST['password']);
     $upassword = md5($_POST['upassword']);
@@ -59,8 +60,8 @@ if (isset($_POST['submit'])) {
 
             $otp_code = rand(100000, 999999);
 
-            $sql = "INSERT INTO user (username, email, password, fotoprofile, otp_code, is_verified, status_mahasiswa)
-                  VALUES ('$username', '$email', '$password', '$foto_profile', '$otp_code', 0 , '$status_mahasiswa')";
+            $sql = "INSERT INTO user (username, email, password, fotoprofile, otp_code, is_verified, status_mahasiswa, username_vis)
+                  VALUES ('$username', '$email', '$password', '$foto_profile', '$otp_code', 0 , '$status_mahasiswa', '$username_vis')";
             $result = mysqli_query($conn, $sql);
 
             if ($result) {
@@ -305,10 +306,10 @@ if (isset($_POST['submit'])) {
                             <span class="label">Status</span>
                             <select name="status_mahasiswa" id="status_mahasiswa">
                                 <option value="">Pilih status</option>
-                                <option value="mahasiswa_aktif">Mahasiswa Aktif</option>
-                                <option value="alumni">Alumni</option>
-                                <option value="mahasiswa_baru">Mahasiswa Baru</option>
-                                <option value="tamu">Tamu</option>
+                                <option value="Mahasiswa Aktif">Mahasiswa Aktif</option>
+                                <option value="Alumni">Alumni</option>
+                                <option value="Mahasiswa Baru">Mahasiswa Baru</option>
+                                <option value="Tamu">Tamu</option>
                             </select>
                         </label>
                     </div>

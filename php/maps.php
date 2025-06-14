@@ -14,7 +14,43 @@ $sql = "
     
     SELECT 'atm' AS sumber, id, nama_bank AS nama, deskripsi, foto, link_maps AS link, NULL AS operasional, NULL AS linkD
     FROM atm
+
+    UNION
+    
+    SELECT 'kantin' AS sumber, id, nama_kantin AS nama, deskripsi, foto, link_maps AS link, NULL AS operasional, NULL AS linkD
+    FROM kantin
+
+    UNION
+
+    SELECT 'fotokopi' AS sumber, id, nama_tempat, deskripsi, foto, link_maps AS link, jam_buka AS operasional, NULL AS linkD
+    FROM fotokopi
+
+    UNION
+
+    SELECT 'lapangan' AS sumber, id, nama_lapangan AS nama, deskripsi, foto, link_maps AS link, NULL AS operasional, NULL AS linkD
+    FROM lapangan
+
+    UNION
+
+    SELECT 'masjid' AS sumber, id, nama_masjid AS nama, deskripsi, foto, link_maps AS link, NULL AS operasional, NULL AS linkD
+    FROM masjid
+
+    UNION
+
+    SELECT 'minimarket' AS sumber, id, nama_minimarket AS nama, deskripsi, foto, link_maps AS link, jam_buka AS operasional, NULL AS linkD
+    FROM minimarket
+
+    UNION
+
+    SELECT 'ruang' AS sumber, id, nama_ruang, detail_tempat AS nama, NULL,NULL AS link, NULL AS operasional, NULL AS linkD
+    FROM ruang
+
+    UNION
+
+    SELECT 'wifi' AS sumber, id, nama_wifi AS nama, password_wifi, foto, link_maps AS link, NULL AS operasional, NULL AS linkD
+    FROM wifi
 ";
+
 
 $result = $conn->query($sql);
 
@@ -64,8 +100,9 @@ $result = $conn->query($sql);
     <section class="overflow-hidden bg-gray-50 sm:grid sm:grid-cols-2">
         <div class="p-8 md:p-12 lg:px-16 lg:py-24">
             <div class="mx-auto max-w-xl text-center ltr:sm:text-left rtl:sm:text-right">
-                <h2 class="text-2xl font-bold text-gray-900 md:text-3xl">
-                    Maps Kampus Universitas Islam Negeri Sunan Gunung Djati Bandung
+                <h2 class="text-2xl font-bold text-gray-900 md:text-3xl poppins-bold">
+                    Maps Kampus
+                    <p class="text-[#7C3AED]">Universitas Islam Negeri Sunan Gunung Djati Bandung</p>
                 </h2>
 
                 <p class="hidden text-gray-500 md:mt-4 md:block poppins-regular">
@@ -74,7 +111,7 @@ $result = $conn->query($sql);
             </div>
         </div>
         <!-- Keterangan Icon -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-7xl px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full max-w-7xl px-4 py-8">
             <!-- Baris 1 -->
             <div>
                 <ol class="grid grid-cols-3 sm:grid-cols-3 overflow-hidden rounded-xl border border-gray-200 bg-white text-sm text-[#1F2937] shadow-sm">
@@ -113,7 +150,7 @@ $result = $conn->query($sql);
 
             <!-- Baris 3 -->
             <div>
-                <ol class="grid grid-cols-4 sm:grid-cols-4 overflow-hidden rounded-xl border border-gray-200 bg-white text-sm text-[#1F2937] shadow-sm">
+                <ol class="lg:-mt-20 lg:w-[550px] sm:w-[350px] grid grid-cols-4 sm:grid-cols-4 overflow-hidden rounded-xl border border-gray-200 bg-white text-sm text-[#1F2937] shadow-sm">
                     <li class="flex flex-col items-center justify-center gap-2 p-5">
                         <i class="fi fi-sr-document text-2xl text-[#7C3AED]"></i>
                         <strong class="font-medium">Fotokopi</strong>
@@ -139,7 +176,7 @@ $result = $conn->query($sql);
     </section>
 
     <!-- MAPS & DESKRIPSI -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full px-4 mx-auto">
         <!-- MAP (2 kolom dari 3) -->
         <div class="relative z-10 md:col-span-2">
             <!-- Overlay untuk mengunci interaksi -->
@@ -187,46 +224,55 @@ $result = $conn->query($sql);
 
     </label>
     <!-- ALL MAP -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full mt-20 px-4 mx-auto" id="searchMaps">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full mt-20 px-4 mx-auto" id="searchMaps">
         <?php while ($row = $result->fetch_assoc()): ?>
             <article class="overflow-hidden rounded-lg border border-gray-100 bg-white shadow-sm transition hover:shadow-md " id="searchMaps">
                 <img
                     alt="<?= htmlspecialchars($row['nama']) ?>"
-                    src="<?= htmlspecialchars($row['foto']) ?>"
+                    src="<?= htmlspecialchars(!empty($row['foto']) ? $row['foto'] : '../images/gedung3d.png') ?>"
+                    
                     class="h-56 w-full object-cover" />
                 <div class="p-4 sm:p-6">
-                    <p class="mt-2 line-clamp-3 text-xl nama_tempats">
+                    <p class="mt-2 line-clamp-3 text-xl nama_tempats poppins-regular">
                         <?= htmlspecialchars($row['nama']) ?>
                     </p>
 
-                     <p class="mt-2 line-clamp-3 text-sm text-gray-500">
-                        <?= htmlspecialchars(substr($row['deskripsi'], 0, 150)) ?>...
+                    <p class="mt-2 line-clamp-3 text-sm text-gray-500 poppins-light">
+                        <?= htmlspecialchars(substr($row['deskripsi'], 0, 140)) ?>...
                     </p>
                     <?php if ($row['sumber'] === 'gedung'): ?>
-                   
-                    <dl class="mt-6 flex gap-4 lg:gap-6">
-                        <div>
-                            <dt class="text-sm font-medium text-gray-700">Jam Operasional</dt>
 
-                            <dd class="text-xs text-gray-700 mt-[6px]"><?= htmlspecialchars($row['operasional']) ?></dd>
-                        </div>
+                        <dl class="mt-6 flex gap-4 lg:gap-6">
+                            <div>
+                                <dt class="text-sm font-medium text-gray-700 poppins-semibold">Jam Operasional</dt>
 
-                        <div>
-                            <dt class="text-sm font-medium text-gray-700">Lihat Detail Gedung</dt>
+                                <dd class="text-xs text-gray-700 mt-[6px] poppins-light"><?= htmlspecialchars($row['operasional']) ?></dd>
+                            </div>
 
-                            <a href="<?= htmlspecialchars($row['linkD']) ?>" class="text-xs text-blue-700">Lihat Disini</a>
-                        </div>
-                    </dl>
+                            <div>
+                                <dt class="text-sm font-medium text-gray-700 poppins-semibold">Lihat Detail Gedung</dt>
+
+                                <a href="<?= htmlspecialchars($row['linkD']) ?>" class="text-xs text-blue-700 poppins-light">Lihat Disini</a>
+                            </div>
+                        </dl>
+
+                    <?php elseif ($row['sumber'] === 'fotokopi' || $row['sumber'] === 'minimarket'): ?>
+
+                        <dl class="mt-6 flex gap-4 lg:gap-6">
+                            <div>
+                                <dt class="text-sm font-medium text-gray-700 poppins-light">Jam Operasional</dt>
+
+                                <dd class="text-xs text-gray-700 mt-[6px]"><?= htmlspecialchars($row['operasional']) ?></dd>
+                            </div>
+                        </dl>
                     <?php endif; ?>
 
-
-
-                    <a href="<?= htmlspecialchars($row['link']) ?>" target="_blank" class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-800">
-                        Lihat di Maps
-                        <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">&rarr;</span>
-                    </a>
-
-
+                    <?php if ($row['sumber'] !== 'ruang'): ?>
+                        <a href="<?= htmlspecialchars($row['link']) ?>" target="_blank" class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-800 poppins-light">
+                            Lihat di Maps
+                            <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">&rarr;</span>
+                        </a>
+                    <?php endif; ?>
 
                 </div>
             </article>

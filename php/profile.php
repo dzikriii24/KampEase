@@ -13,7 +13,8 @@ if (!isset($_SESSION['username'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>KampEase</title>
+        <title>Profile</title>
+        <link rel="icon" type="image/ico" href="../images/log2.png" />
 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,28 +54,28 @@ if (!isset($_SESSION['username'])) {
 
     <body class="min-h-screen flex flex-col justify-start overflow-x-hidden">
 
-        <section class="bg-[#F8F5FF] lg:grid lg:h-screen lg:place-content-center sm:-mt-35">
+        <section class="bg-[#F8F5FF] lg:grid lg:h-screen lg:place-content-center lg:-mt-35">
             <div class="mx-auto w-screen max-w-screen-xl px-4 py-16 sm:px-6 sm:py-8 sm:-mb-10 sm:-pb-10">
                 <div class="mx-auto max-w-prose text-center">
-                    <h1 class="text-4xl font-bold text-gray-800 sm:text-5xl poppins-semibold">
+                    <h1 class="text-4xl font-bold text-gray-800 poppins-semibold">
                         Jelajahi fitur dan
                         <strong class="text-[#7C3AED] poppins-semibold"> temukan lokasi </strong>
                         dengan mudah
                     </h1>
 
-                    <p class="mt-4 text-base text-pretty text-[#1F2937] sm:text-lg/relaxed poppins-regular">
+                    <p class="mt-4 text-base text-pretty text-[#1F2937] text-sm/relaxed poppins-regular">
                         Akses berbagai titik penting seperti gedung, Wi-Fi, dan fasilitas lainnya. Masuk untuk memulai pengalaman penuh dan fitur lengkap!
                     </p>
 
-                    <div class="mt-6 flex justify-center gap-4">
+                    <div class="mt-4 flex justify-center gap-4">
                         <a
-                            class="poppins-semibold inline-block rounded-lg border border-[#7C3AED] bg-[#7C3AED] px-6 py-3 font-medium text-white shadow-sm transition-colors hover:bg-[#6D28D9]"
+                            class="poppins-regular inline-block rounded-lg border border-[#7C3AED] bg-[#7C3AED] px-5 py-2 text-white shadow-sm transition-colors hover:bg-[#6D28D9]"
                             href="login.php">
                             Masuk
                         </a>
 
                         <a
-                            class="poppins-semibold inline-block rounded-lg border border-[#E5E0FA] px-6 py-3 font-medium text-[#5B21B6] shadow-sm transition-colors hover:bg-[#ECE7FE] hover:text-[#4C1D95]"
+                            class="poppins-regular inline-block rounded-lg border border-[#E5E0FA] px-5 py-2 text-[#5B21B6] shadow-sm transition-colors hover:bg-[#ECE7FE] hover:text-[#4C1D95]"
                             href="register.php">
                             Registrasi
                         </a>
@@ -82,21 +83,18 @@ if (!isset($_SESSION['username'])) {
                 </div>
             </div>
         </section>
-        <div class="bg-[#F8F5FF] p-6 sm:p-2 sm:-mt-16">
-            <div class="space-y-4 max-w-xl mx-auto ">
+        <div class="bg-[#F8F5FF] p-6 sm:p-2 lg:-mt-20 sm:mt-10">
+            <div class="space-y-4 max-w-xl mx-auto">
 
                 <!-- Item 1 -->
                 <div class="border border-purple-300 rounded-lg overflow-hidden">
                     <input type="checkbox" class="peer hidden" id="faq1" />
-
-                    <label for="faq1"
-                        class="block cursor-pointer bg-purple-100 text-purple-800 font-semibold px-4 py-3 peer-checked:bg-purple-200 transition">
+                    <label for="faq1" class="block cursor-pointer bg-purple-100 text-purple-800 font-semibold px-4 py-3 peer-checked:bg-purple-200 transition">
                         Bagaimana cara membuat akun?
                     </label>
-
                     <div class="max-h-0 peer-checked:max-h-40 overflow-hidden transition-all duration-500 bg-white">
                         <div class="px-4 py-2 text-gray-700">
-                            Klik tombol "Sign Up" di pojok kanan atas dan ikuti proses pendaftaran yang tersedia.
+                            Klik tombol "registrasi" dan lengkapi formulir pendaftaran. Pastikan email kamu aktif untuk menerima kode verifikasi.
                         </div>
                     </div>
                 </div>
@@ -104,13 +102,38 @@ if (!isset($_SESSION['username'])) {
                 <!-- Item 2 -->
                 <div class="border border-purple-300 rounded-lg overflow-hidden">
                     <input type="checkbox" class="peer hidden" id="faq2" />
-                    <label for="faq2"
-                        class="block cursor-pointer bg-purple-100 text-purple-800 font-semibold px-4 py-3 peer-checked:bg-purple-200 transition">
+                    <label for="faq2" class="block cursor-pointer bg-purple-100 text-purple-800 font-semibold px-4 py-3 peer-checked:bg-purple-200 transition">
                         Apakah saya bisa mengganti password?
                     </label>
                     <div class="max-h-0 peer-checked:max-h-40 overflow-hidden transition-all duration-500 bg-white">
                         <div class="px-4 py-2 text-gray-700">
-                            Klik tombol "Sign Up" di pojok kanan atas dan ikuti proses pendaftaran yang tersedia.
+                            Bisa! Cukup buka halaman login dan klik "Lupa Password?" lalu ikuti petunjuk reset melalui email kamu.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="border border-purple-300 rounded-lg overflow-hidden">
+                    <input type="checkbox" class="peer hidden" id="faq3" />
+                    <label for="faq3" class="block cursor-pointer bg-purple-100 text-purple-800 font-semibold px-4 py-3 peer-checked:bg-purple-200 transition">
+                        Apa saja fitur utama KampEase?
+                    </label>
+                    <div class="max-h-0 peer-checked:max-h-40 overflow-hidden transition-all duration-500 bg-white">
+                        <div class="px-4 py-2 text-gray-700">
+                            Kamu bisa menelusuri lokasi kampus, melihat titik Wi-Fi, kantin, gedung, hingga menandai lokasi favorit kamu!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="border border-purple-300 rounded-lg overflow-hidden">
+                    <input type="checkbox" class="peer hidden" id="faq4" />
+                    <label for="faq4" class="block cursor-pointer bg-purple-100 text-purple-800 font-semibold px-4 py-3 peer-checked:bg-purple-200 transition">
+                        Apakah aplikasi ini hanya untuk mahasiswa aktif?
+                    </label>
+                    <div class="max-h-0 peer-checked:max-h-40 overflow-hidden transition-all duration-500 bg-white">
+                        <div class="px-4 py-2 text-gray-700">
+                            Tidak! KampEase juga bisa digunakan oleh alumni, mahasiswa baru, bahkan tamu kampus. Cukup pilih status kamu saat registrasi.
                         </div>
                     </div>
                 </div>
@@ -190,7 +213,7 @@ if (!isset($_SESSION['username'])) {
 
 $username = $_SESSION['username']; // hanya dipakai kalau sudah login
 
-$sql = "SELECT fotoprofile, status_mahasiswa FROM user WHERE username = ?";
+$sql = "SELECT fotoprofile, status_mahasiswa, username_vis FROM user WHERE username = ?";
 $stmt = $conn->prepare($sql);
 
 if ($stmt === false) {
@@ -220,7 +243,9 @@ $stmt->close(); // Jangan lupa ditutup
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KampEase</title>
+    <title>Profile</title>
+    <link rel="icon" type="image/ico" href="../images/log2.png" />
+
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -261,12 +286,12 @@ $stmt->close(); // Jangan lupa ditutup
     <div>
         <div class="navbar bg-base-100 shadow-sm p-6">
             <div class="flex-1 mt-5">
-                <div class="flex justify-start text-xl">
+                <div class="flex justify-start text-xl poppins-regular text-[#7C3AED]">
                     <span id="jam"></span>
-                    <span>&nbsp;<?php echo $_SESSION['username']; ?>!</span>
+                    <span class="">&nbsp;<?php echo $row['username_vis']; ?>!</span>
                 </div>
 
-                <p class="text-gray-700 sm:col-span-2 dark:text-gray-200"><?php echo $row['status_mahasiswa']; ?></p>
+                <p class="text-[#1F2937] sm:col-span-2 poppins-regular"><?php echo $row['status_mahasiswa']; ?></p>
             </div>
             <div class="flex-none mt-5">
 
@@ -281,10 +306,10 @@ $stmt->close(); // Jangan lupa ditutup
                 <!-- Put this part before </body> tag -->
                 <input type="checkbox" id="my_modal_7" class="modal-toggle" />
                 <div class="modal" role="dialog">
-                    <div class="modal-box">
-                        <div class="modal-box w-auto p-0 overflow-hidden">
+                    <div class="modal-box w-70 mx-auto">
+                        <div class="modal-boxp-0 overflow-hidden">
                             <img src="<?php echo htmlspecialchars($foto_profile); ?>" alt="Gambar"
-                                class="max-w-full h-auto block" />
+                                class="w-70 h-auto block rounded-lg" />
                         </div>
                     </div>
                     <label class="modal-backdrop" for="my_modal_7">Close</label>
@@ -307,10 +332,10 @@ $stmt->close(); // Jangan lupa ditutup
                     <i class="fi fi-sr-region-pin-alt"></i>
                 </div>
                 <div class="card-body">
-                    <h2 class="card-title">Cari Tempat di KampEase!</h2>
-                    <p>Click the button to watch on Jetflix app.</p>
+                    <h2 class="card-title poppins-bold">Cari Tempat di KampEase!</h2>
+                    <p class="poppins-regular">Mulai Explorasi Tempat di KampEase!</p>
                     <div class="card-actions justify-end">
-                        <button class="btn btn-primary">Cari</button>
+                        <a href="maps.php" class="btn btn-primary poppins-regular">Cari</a>
                     </div>
                 </div>
             </div>
@@ -321,10 +346,10 @@ $stmt->close(); // Jangan lupa ditutup
 
 
                 <div class="card-body">
-                    <h2 class="card-title">Tempat Favorit Kamu</h2>
-                    <p>test github.</p>
+                    <h2 class="card-title poppins-bold">Tempat Favorite</h2>
+                    <p class="poppins-regular">Lihat tempat favorite anda di KampEase!</p>
                     <div class="card-actions justify-end">
-                        <button class="btn btn-primary">Lihat</button>
+                        <button id="fav" href="tempatFav.php" class="btn btn-primary poppins-regular" onclick="my_modal_1.showModal()">Lihat</button>
                     </div>
                 </div>
             </div>
@@ -360,7 +385,7 @@ $stmt->close(); // Jangan lupa ditutup
                 </button>
 
 
-                <a href="" class="flex items-center justify-between bg-[#7C3AED] dark:bg-[#7C3AED] p-4 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 text-white mb-4 mx-4">
+                <a href="about.php" class="flex items-center justify-between bg-[#7C3AED] dark:bg-[#7C3AED] p-4 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 text-white mb-4 mx-4">
                     <span class="text-base font-semibold text-gray-800 dark:text-gray-100">Tentang Kami</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
@@ -381,51 +406,11 @@ $stmt->close(); // Jangan lupa ditutup
         <!-- FAQ -->
 
         <section class="overflow-hidden bg-white mt-10">
-            <div class="grid grid-cols-1 sm:grid-cols-2">
+            <div class="">
 
-                <!-- Right Side: Accordion -->
-                <div class="p-6 sm:p-10 bg-white">
-                    <div class="space-y-4 max-w-xl mx-auto">
-
-                        <!-- Item 1 -->
-                        <div class="border border-purple-300 rounded-lg overflow-hidden">
-                            <input type="checkbox" class="peer hidden" id="faq1" />
-
-                            <label for="faq1"
-                                class="block cursor-pointer bg-purple-100 text-purple-800 font-semibold px-4 py-3 peer-checked:bg-purple-200 transition">
-                                Bagaimana cara membuat akun?
-                            </label>
-
-                            <div class="max-h-0 peer-checked:max-h-40 overflow-hidden transition-all duration-500 bg-white">
-                                <div class="px-4 py-2 text-gray-700">
-                                    Klik tombol "Registrasi" di pojok kanan atas dan ikuti proses pendaftaran yang tersedia.
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Item 2 -->
-                        <div class="border border-purple-300 rounded-lg overflow-hidden">
-                            <input type="checkbox" class="peer hidden" id="faq2" />
-                            <label for="faq2"
-                                class="block cursor-pointer bg-purple-100 text-purple-800 font-semibold px-4 py-3 peer-checked:bg-purple-200 transition">
-                                Apakah saya bisa mengganti password?
-                            </label>
-                            <div class="max-h-0 peer-checked:max-h-40 overflow-hidden transition-all duration-500 bg-white">
-                                <div class="px-4 py-2 text-gray-700">
-                                    Klik Masuk lalu Klik lupa password.
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
                 <!-- Left Side: Text -->
                 <div class="p-8 md:p-12 lg:px-16 lg:py-24 bg-[#f5f3ff]">
                     <div class="mx-auto max-w-xl text-center sm:text-left">
-                        <h2 class="text-3xl font-bold text-purple-800">FAQ</h2>
-                        <p class="text-gray-600 mt-4 mb-2">
-                            Temukan jawaban dari pertanyaan yang sering diajukan mengenai layanan dan fitur yang kami sediakan.
-                        </p>
                         <div class="max-w-xl mx-auto bg-white border border-purple-200 rounded-xl shadow-lg p-6 space-y-4">
                             <!-- Judul -->
                             <h2 class="text-xl font-semibold text-purple-800">Tinggalkan Komentar</h2>
@@ -552,7 +537,19 @@ $stmt->close(); // Jangan lupa ditutup
                 }
             });
         });
+
+        document.getElementById('fav').addEventListener('click', function() {
+            Swal.fire({
+                title: "Fitur Belum Tersedia",
+                text: "Fiturr lagi kami develop yaa, stay tune!",
+                imageUrl: "https://i.pinimg.com/736x/7b/4a/f1/7b4af1b1ea241fee30d0a69333cd1e06.jpg",
+                imageWidth: 200,
+                imageHeight: 200,
+                imageAlt: "Custom image"
+            });
+        });
     </script>
+    
     <!-- FIXED END -->
     <script src="js/chatbot.js"></script>
     <script src="../js/other.js"></script>

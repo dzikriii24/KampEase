@@ -10,17 +10,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KampEase</title>
-
+    <link rel="icon" type="image/ico" href="images/log2.png" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    
+
 
     <!--logo web-->
-    <link rel="icon" type="image/ico" href="images/log2.png"/>
+
 
 
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
@@ -47,7 +47,7 @@
         <div class="carousel w-full ">
             <div id="item1" class="carousel-item w-full">
                 <img
-                    src="images/Banner.png"
+                    src="images/baneerr.png"
                     class="w-full" />
             </div>
         </div>
@@ -59,19 +59,19 @@
     <!-- bikin auto complete untuk search -->
     <form action="php/cari.php" method="get">
         <label class="poppins-regular bg-[#FFFFFF] aret-[#1F2937] text-[#1F2937] input items-center -mt-5 flex justify-self-center outline-none rounded-xl hover:outline-hidden focus:outline-hidden lg:w-[500px]" style="outline:none;">
-            <input type="search" name="q" required placeholder="Cari Tempat di Sekitar Kampus" class="poppins-reguler caret-[#1F2937] text-[#1F2937] bg-[#1F2937 ] outline-none lg:p-4 rounded-lg" style="outline:none;" />
-            <button class="hover:text-[#7C3AED] transition-colors duration-300 cursor-pointer" type="submit">
-                 <svg class="h-[1em] opacity-70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <g
-                    stroke-linejoin="round"
-                    stroke-linecap="round"
-                    stroke-width="2.5"
-                    fill="none"
-                    stroke="currentColor">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="m21 21-4.3-4.3"></path>
-                </g>
-            </svg>
+            <input type="search" name="q" required placeholder="Cari Tempat di Sekitar Kampus" class="poppins-reguler caret-[#1F2937] text-[#1F2937] bg-[#1F2937 ] outline-none lg:p-4 rounded-lg" style="outline:none;" maxlength="20" />
+            <button class="hover:text-[#1F2937] transition-colors duration-300 cursor-pointer text-[#7C3AED]" type="submit">
+                <svg class="h-[1em] opacity-70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <g
+                        stroke-linejoin="round"
+                        stroke-linecap="round"
+                        stroke-width="2.5"
+                        fill="none"
+                        stroke="currentColor">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.3-4.3"></path>
+                    </g>
+                </svg>
             </button>
 
         </label>
@@ -105,25 +105,25 @@
             <!-- Body Chat -->
             <div class="p-4 h-64 overflow-y-auto space-y-2 bg-gray-50" x-ref="chatBody">
                 <template x-for="message in messages" :key="message.id">
-                    <div
-                        :class="message.sender === 'user' ? 'text-right' : 'text-left'"
-                        class="text-sm">
-                        <span
-                            :class="message.sender === 'user' ? 'bg-purple-100' : 'bg-white'"
-                            class="inline-block p-2 rounded shadow max-w-xs">
-                            <span x-text="message.text"></span>
+                    <div :class="message.sender === 'user' ? 'text-right' : 'text-left'" class="text-sm">
+                        <span :class="message.sender === 'user' ? 'bg-purple-100' : 'bg-white'"
+                            class="inline-block p-2 rounded shadow max-w-[85%] break-words"
+                            x-html="message.text">
                         </span>
                     </div>
                 </template>
+
             </div>
 
             <!-- Input -->
             <div class="flex items-center border-t border-gray-200 p-2 bg-white">
                 <input
+
                     x-model="newMessage"
                     @keydown.enter="sendMessage()"
                     type="text"
                     placeholder="Ketik pesan..."
+
                     class="flex-1 px-3 py-2 border rounded-full text-sm focus:outline-none" />
                 <button @click="sendMessage()" class="ml-2 bg-[#7C3AED] text-white rounded-full w-9 h-9 flex items-center justify-center hover:bg-purple-700">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -259,7 +259,7 @@
     <!-- BERITA KAMP-EASE -->
     <div class="w-full overflow-x-auto">
         <!-- bikin kalo tampilan hp bisa auto scroll -->
-        <div class="stats shadow bg-white flex sm:justify-self-center mt-20 items-center sm:w-40autoscroll lg:w-[900px] overflow-x-auto flex-nowrap gap-4 py-4 px-2 rounded-xl z-10">
+        <div class="stats shadow bg-white flex sm:justify-self-center mt-20 items-center sm:w-40autoscroll sm:mx-auto sm:w-[600px] lg:w-[900px] overflow-x-auto flex-nowrap gap-4 py-4 px-2 rounded-xl z-10">
             <div class="stat">
                 <div class="stat-figure text-[#7C3AED]">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
@@ -444,16 +444,14 @@
                 <ul
                     class="mt-12 flex flex-wrap justify-center gap-6 md:gap-8 lg:mt-0 lg:justify-end lg:gap-12 text-white poppins-regular">
                     <li>
-                        <a class="transition hover:text-gray-700/75" href="#"> About </a>
+                        <a class="transition hover:text-gray-700/75" href="php/about.php"> About </a>
                     </li>
 
                     <li>
-                        <a class="transition hover:text-gray-700/75" href="#"> Services </a>
+                        <a class="transition hover:text-gray-700/75" href="php/more.php"> Services </a>
                     </li>
 
-                    <li>
-                        <a class="transition hover:text-gray-700/75" href="#"> Team </a>
-                    </li>
+
                 </ul>
             </div>
 
@@ -492,6 +490,7 @@
     <!-- FIXED MENU END -->
 
     <script src="js/chatbot.js"></script>
+
 
 </body>
 

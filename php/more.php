@@ -1,3 +1,35 @@
+<?php
+$conn = new mysqli("localhost", "root", "", "kamp_ease");
+$sql = "
+    SELECT 'kantin' AS sumber, COUNT(*) AS total FROM kantin
+    UNION ALL
+    SELECT 'gedung' AS sumber, COUNT(*) AS total FROM gedung
+    UNION ALL
+    SELECT 'masjid' AS sumber, COUNT(*) AS total FROM masjid
+    UNION ALL
+    SELECT 'atm' AS sumber, COUNT(*) AS total FROM atm
+    UNION ALL
+    SELECT 'minimarket' AS sumber, COUNT(*) AS total FROM minimarket
+    UNION ALL
+    SELECT 'fotokopi' AS sumber, COUNT(*) AS total FROM fotokopi
+    UNION ALL
+    SELECT 'parkiran' AS sumber, COUNT(*) AS total FROM parkiran
+    UNION ALL
+    SELECT 'ruang' AS sumber, COUNT(*) AS total FROM ruang
+    UNION ALL
+    SELECT 'wifi' AS sumber, COUNT(*) AS total FROM wifi
+";
+
+$result = mysqli_query($conn, $sql);
+
+$data = [];
+$total = 0;
+while ($row = mysqli_fetch_assoc($result)) {
+    $data[$row['sumber']] = $row['total'];
+    $total += $row['total'];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en" class="bg-[#F3F4F6]">
 
@@ -63,62 +95,64 @@
     </div>
 
     <!-- Stat -->
-    <div class="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-4 mt-16 sm:mt-10">
+    <div class="grid grid-cols-2 gap-4 sm:grid-cols-2 lg:grid-cols-4 mt-16 sm:mt-10 mx-auto px-4">
         <!-- Stat 1 -->
         <div class="stat bg-white rounded-xl shadow-md text-center">
             <div class="stat-title text-gray-500">Total Gedung</div>
-            <div class="stat-value text-[#7C3AED]">87</div>
-            <div class="stat-desc text-gray-400">Total across campus</div>
+            <div class="stat-value text-[#7C3AED]"><?=$data['gedung'] ?></div>
+            <div class="stat-desc text-gray-400">Gedung di Sekitar UIN SGD</div>
         </div>
 
         <!-- Stat 2 -->
         <div class="stat bg-white rounded-xl shadow-md text-center">
-            <div class="stat-title text-gray-500">WiFi Spots</div>
-            <div class="stat-value text-[#7C3AED]">23</div>
-            <div class="stat-desc text-gray-400">Active across campus</div>
+            <div class="stat-title text-gray-500">Total Kantin</div>
+            <div class="stat-value text-[#7C3AED]"><?=$data['kantin'] ?></div>
+            <div class="stat-desc text-gray-400">Kantin di Sekitar UIN SGD</div>
         </div>
 
         <!-- Stat 3 -->
         <div class="stat bg-white rounded-xl shadow-md text-center">
-            <div class="stat-title text-gray-500">Food Stalls</div>
-            <div class="stat-value text-[#7C3AED]">14</div>
-            <div class="stat-desc text-gray-400">Including café & kantin</div>
+            <div class="stat-title text-gray-500">Masjid</div>
+            <div class="stat-value text-[#7C3AED]"><?=$data['kantin'] ?></div>
+            <div class="stat-desc text-gray-400">Masjid di Sekitar UIN SGD</div>
         </div>
 
         <!-- Stat 4 -->
         <div class="stat bg-white rounded-xl shadow-md text-center">
-            <div class="stat-title text-gray-500">Classrooms</div>
-            <div class="stat-value text-[#7C3AED]">31</div>
-            <div class="stat-desc text-gray-400">Across 6 buildings</div>
+            <div class="stat-title text-gray-500">Ruang Kelas</div>
+            <div class="stat-value text-[#7C3AED]"><?=$data['ruang'] * 11 ?></div>
+            <div class="stat-desc text-gray-400">Total Ruangan di UIN SGD</div>
         </div>
 
         <!-- Stat 5 -->
         <div class="stat bg-white rounded-xl shadow-md text-center">
-            <div class="stat-title text-gray-500">Favorites Saved</div>
-            <div class="stat-value text-[#7C3AED]">402</div>
-            <div class="stat-desc text-gray-400">User preferred places</div>
+            <div class="stat-title text-gray-500">ATM</div>
+            <div class="stat-value text-[#7C3AED]"><?=$data['atm'] ?></div>
+            <div class="stat-desc text-gray-400">ATM di Sekitar UIN SGD</div>
         </div>
 
         <!-- Stat 6 -->
         <div class="stat bg-white rounded-xl shadow-md text-center">
-            <div class="stat-title text-gray-500">New Users</div>
-            <div class="stat-value text-[#7C3AED]">157</div>
-            <div class="stat-desc text-gray-400">Last 30 days</div>
+            <div class="stat-title text-gray-500">Mini Market</div>
+            <div class="stat-value text-[#7C3AED]"><?=$data['minimarket'] ?></div>
+            <div class="stat-desc text-gray-400">Mini Market disekitar UIN SGD</div>
         </div>
 
+           <div class="stat bg-white rounded-xl shadow-md text-center">
+            <div class="stat-title text-gray-500">Masjid</div>
+            <div class="stat-value text-[#7C3AED]"><?=$data['masjid'] ?></div>
+            <div class="stat-desc text-gray-400">Total Masjid di Sekitar UIN SGD</div>
+        </div>
         <!-- Stat 7 -->
         <div class="stat bg-white rounded-xl shadow-md text-center">
-            <div class="stat-title text-gray-500">Sports Areas</div>
-            <div class="stat-value text-[#7C3AED]">5</div>
-            <div class="stat-desc text-gray-400">Futsal, Basket, etc</div>
+            <div class="stat-title text-gray-500">Total Tempat</div>
+            <div class="stat-value text-[#7C3AED]"><?=$total+($data['ruang']*11)?></div>
+            <div class="stat-desc text-gray-400">Total Tempat di KampEase</div>
+            <div class="stat-desc text-gray-400">Terus Update</div>
         </div>
-
+        
         <!-- Stat 8 -->
-        <div class="stat bg-white rounded-xl shadow-md text-center">
-            <div class="stat-title text-gray-500">Events Posted</div>
-            <div class="stat-value text-[#7C3AED]">18</div>
-            <div class="stat-desc text-gray-400">Campus-wide</div>
-        </div>
+     
     </div>
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 mx-auto px-4 mt-10">
         <article class="flex flex-col sm:flex-row transition hover:shadow-xl rounded-2xl bg-[url('../images/gedung3d.png')] sm:bg-contain bg-cover sm:bg-white">

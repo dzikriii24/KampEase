@@ -12,6 +12,7 @@ $tableMap = [
     'masjid' => 'masjid',
     'parkiran' => 'parkiran',
     'minimarket' => 'minimarket',
+    'wifi' => 'wifi',
 ];
 
 if (array_key_exists($type, $tableMap)) {

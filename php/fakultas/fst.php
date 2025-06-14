@@ -1,3 +1,20 @@
+<?php
+$conn = new mysqli("localhost", "root", "", "kamp_ease");
+
+$Lantai1 = "SELECT * FROM ruang WHERE lantai = 1";
+$result1 = $conn->query($Lantai1);
+
+$Lantai2 = "SELECT * FROM ruang WHERE lantai = 2";
+$result2 = $conn->query($Lantai2);
+
+$Lantai3 = "SELECT * FROM ruang WHERE lantai = 3";
+$result3 = $conn->query($Lantai3);
+
+$Lantai4 = "SELECT * FROM ruang WHERE lantai = 4";
+$result4 = $conn->query($Lantai4);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en" class="bg-[#F3F4F6]">
 
@@ -34,7 +51,7 @@
     <link rel="stylesheet" href="../css/hover.css">
 
     <!--logo web-->
-    <link rel="icon" type="image/ico" href="/KampEase/images/log2.png"/>
+    <link rel="icon" type="image/ico" href="/KampEase/images/log2.png" />
 </head>
 
 
@@ -69,376 +86,157 @@
             </div>
         </div>
     </section>
+    <label class="mt-10 poppins-regular bg-[#FFFFFF] aret-[#1F2937] text-[#1F2937] input items-center -mt-5 flex justify-self-center outline-none rounded-xl hover:outline-hidden focus:outline-hidden lg:w-[500px]" style="outline:none;">
+        <input type="search" name="q" required placeholder="Cari Ruang di Gedung FST" class="poppins-reguler caret-[#1F2937] text-[#1F2937] bg-[#1F2937 ] outline-none lg:p-4 rounded-lg" style="outline:none;" id="searchInput" onkeyup="searchGedung()" />
+        <button class="hover:text-[#7C3AED] transition-colors duration-300 cursor-pointer" type="submit">
+            <svg class="h-[1em] opacity-70" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <g
+                    stroke-linejoin="round"
+                    stroke-linecap="round"
+                    stroke-width="2.5"
+                    fill="none"
+                    stroke="currentColor">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.3-4.3"></path>
+                </g>
+            </svg>
+        </button>
+
+    </label>
     <!-- Header End -->
 
     <!-- List Ruangan -->
 
     <div class="mt-8 w-full max-w-full px-4">
-        <div class="collapse bg-base-100 shadow-md rounded-xl mt-2">
-            <input type="checkbox" class="peer hidden" id="collapse-fst1" />
+        <div class="bg-base-100 shadow-md rounded-xl mt-2">
+           
 
             <!-- Header -->
-            <label for="collapse-fst1" class="collapse-title btn btn-ghost text-xl text-left w-full rounded-t-xl">
-                Lantai 1 FST
-            </label>
+            <div class="bg-base-100 shadow-md rounded-xl">
+            
 
-            <!-- Isi Dropdown -->
-            <div class="collapse-content list bg-base-100 px-4 pb-4 rounded-b-xl">
+                <!-- Header -->
+                <label class="btn btn-ghost text-xl text-left w-full rounded-t-xl">
+                    Lantai 1 FST
+                </label>
 
-                <li class="list-row">
-                    <i class="fi fi-br-restroom-simple text-4xl"></i>
-                    <div>
-                        <div>Toilet </div>
-                        <div class="text-xs font-semibold opacity-60">Ujung Kanan Lantai 1</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
+                <!-- Isi Dropdown -->
+                <div class="list bg-base-100 px-4 pb-4 rounded-b-xl" id="gedungTable">
+                    <?php while ($row = $result1->fetch_assoc()): ?>
+                        <li class="list-row">
+                            <i class="<?= htmlspecialchars($row['path']) ?>"></i>
+                            <div>
+                                <div class="nama_gedung"><?= htmlspecialchars($row['nama_ruang']) ?></div>
+                                <div class="text-xs font-semibold opacity-60">
+                                    <?= htmlspecialchars($row['deskripsi']) ?>
+                                </div>
+                                <div class="text-xs font-regular opacity-60">
+                                    <?= htmlspecialchars($row['detail_tempat']) ?>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endwhile; ?>
+                </div>
+            </div>
+        </div>
+        <div class="bg-base-100 shadow-md rounded-xl mt-2">
+            <input type="checkbox" class="peer hidden" id="" />
 
-                <li class="list-row">
-                    <i class="fi fi-rr-mosque-moon text-4xl"></i>
-                    <div>
-                        <div>Musholla</div>
-                        <div class="text-xs font-semibold opacity-60">Ujung Kanan Lantai 1</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
+            <!-- Header -->
+            <div class="bg-base-100 shadow-md rounded-xl">
+                <input type="checkbox" class="peer hidden" id="" />
 
-                <li class="list-row">
-                    <i class="fi fi-rc-books text-4xl"></i>
-                    <div>
-                        <div>R 4.01</div>
-                        <div class="text-xs font-semibold opacity-60">Perpustakaan Fakultas Sains & Teknologi</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
+                <!-- Header -->
+                <label for="" class=" btn btn-ghost text-xl text-left w-full rounded-t-xl">
+                    Lantai 2 FST
+                </label>
 
+                <!-- Isi Dropdown -->
+                <div class="list bg-base-100 px-4 pb-4 rounded-b-xl" id="gedungTable">
+                    <?php while ($row = $result2->fetch_assoc()): ?>
+                        <li class="list-row">
+                            <i class="<?= htmlspecialchars($row['path']) ?>"></i>
+                            <div>
+                                <div class="nama_gedung"><?= htmlspecialchars($row['nama_ruang']) ?></div>
+                                <div class="text-xs font-semibold opacity-60">
+                                    <?= htmlspecialchars($row['deskripsi']) ?>
+                                </div>
+                                <div class="text-xs font-regular opacity-60">
+                                    <?= htmlspecialchars($row['detail_tempat']) ?>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endwhile; ?>
+                </div>
+            </div>
+        </div>
+        <div class="bg-base-100 shadow-md rounded-xl mt-2">
+            <input type="checkbox" class="peer hidden" id="" />
 
-                <li class="list-row">
-                    <i class="fi fi-rr-user-crown text-4xl"></i>
-                    <div>
-                        <div>Ketua Lab FST</div>
-                        <div class="text-xs font-semibold opacity-60">Ruangan Ketua Lab FST</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
+            <!-- Header -->
+            <div class="bg-base-100 shadow-md rounded-xl">
+                <input type="checkbox" class="peer hidden" id="" />
 
-                <li class="list-row">
-                    <i class="fi fi-sr-admin-alt text-4xl"></i>
-                    <div>
-                        <div>Ruang TU</div>
-                        <div class="text-xs font-semibold opacity-60">Ruangan Tata Usaha</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
+                <!-- Header -->
+                <label for="" class="btn btn-ghost text-xl text-left w-full rounded-t-xl">
+                    Lantai 3 FST
+                </label>
 
-                <li class="list-row">
-                    <i class="fi fi-rr-user-crown text-4xl"></i>
-                    <div>
-                        <div>Ketua Lab FST</div>
-                        <div class="text-xs font-semibold opacity-60">Ruangan Ketua Lab FST</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
+                <!-- Isi Dropdown -->
+                <div class="list bg-base-100 px-4 pb-4 rounded-b-xl" id="gedungTable">
+                    <?php while ($row = $result3->fetch_assoc()): ?>
+                        <li class="list-row">
+                            <i class="<?= htmlspecialchars($row['path']) ?>"></i>
+                            <div>
+                                <div class="nama_gedung"><?= htmlspecialchars($row['nama_ruang']) ?></div>
+                                <div class="text-xs font-semibold opacity-60">
+                                    <?= htmlspecialchars($row['deskripsi']) ?>
+                                </div>
+                                <div class="text-xs font-regular opacity-60">
+                                    <?= htmlspecialchars($row['detail_tempat']) ?>
+                                </div>
+                            </div>
 
-                <li class="list-row">
-                    <i class="fi fi-rr-user-crown text-4xl"></i>
-                    <div>
-                        <div>admin</div>
-                        <div class="text-xs font-semibold opacity-60">Ruangan Ketua Lab FST</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
+                        </li>
+                    <?php endwhile; ?>
+                </div>
+            </div>
+        </div>
+        <div class="bg-base-100 shadow-md rounded-xl mt-2">
+            <input type="checkbox" class="peer hidden" id="" />
 
+            <!-- Header -->
+            <div class=" bg-base-100 shadow-md rounded-xl">
+                <input type="checkbox" class="peer hidden" id="" />
 
+                <!-- Header -->
+                <label for="" class=" btn btn-ghost text-xl text-left w-full rounded-t-xl">
+                    Lantai 4 FST
+                </label>
+                <!-- Isi Dropdown -->
+                <div class="list bg-base-100 px-4 pb-4 rounded-b-xl" id="gedungTable">
+                    <?php while ($row = $result4->fetch_assoc()): ?>
+                        <li class="list-row">
+                            <i class="<?= htmlspecialchars($row['path']) ?>"></i>
+                            <div>
+                                <div class="nama_gedung"><?= htmlspecialchars($row['nama_ruang']) ?></div>
+                                <div class="text-xs font-semibold opacity-60 nama_gedung">
+                                    <?= htmlspecialchars($row['deskripsi']) ?>
+                                </div>
+                                <div class="text-xs font-regular opacity-60">
+                                    <?= htmlspecialchars($row['detail_tempat']) ?>
+                                </div>
+                            </div>
+
+                        </li>
+                    <?php endwhile; ?>
+                </div>
             </div>
         </div>
 
-        <div class="collapse bg-base-100 shadow-md rounded-xl mt-6">
-            <input type="checkbox" class="peer hidden" id="collapse-fst-2" />
-
-            <!-- Header -->
-            <label for="collapse-fst-2" class="collapse-title btn btn-ghost text-xl text-left w-full rounded-t-xl">
-                Lantai 2 FST
-            </label>
-
-            <!-- Isi Dropdown -->
-            <div class="collapse-content list bg-base-100 px-4 pb-4 rounded-b-xl">
-
-                <li class="list-row">
-                    <i class="fi fi-br-restroom-simple text-4xl"></i>
-                    <div>
-                        <div>Toilet </div>
-                        <div class="text-xs font-semibold opacity-60">Ujung Kanan Lantai 1</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
-
-                <li class="list-row">
-                    <i class="fi fi-rr-mosque-moon text-4xl"></i>
-                    <div>
-                        <div>Musholla</div>
-                        <div class="text-xs font-semibold opacity-60">Ujung Kanan Lantai 1</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
-
-                <li class="list-row">
-                    <i class="fi fi-rc-books text-4xl"></i>
-                    <div>
-                        <div>R 4.01</div>
-                        <div class="text-xs font-semibold opacity-60">Perpustakaan Fakultas Sains & Teknologi</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
-
-
-                <li class="list-row">
-                    <i class="fi fi-rr-user-crown text-4xl"></i>
-                    <div>
-                        <div>Ketua Lab FST</div>
-                        <div class="text-xs font-semibold opacity-60">Ruangan Ketua Lab FST</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
-
-                <li class="list-row">
-                    <i class="fi fi-sr-admin-alt text-4xl"></i>
-                    <div>
-                        <div>Ruang TU</div>
-                        <div class="text-xs font-semibold opacity-60">Ruangan Tata Usaha</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
-
-                <li class="list-row">
-                    <i class="fi fi-rr-user-crown text-4xl"></i>
-                    <div>
-                        <div>Ketua Lab FST</div>
-                        <div class="text-xs font-semibold opacity-60">Ruangan Ketua Lab FST</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
-
-                <li class="list-row">
-                    <i class="fi fi-rr-user-crown text-4xl"></i>
-                    <div>
-                        <div>admin</div>
-                        <div class="text-xs font-semibold opacity-60">Ruangan Ketua Lab FST</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
-
-
-            </div>
-        </div>
-
-        <div class="collapse bg-base-100 shadow-md rounded-xl mt-6">
-            <input type="checkbox" class="peer hidden" id="collapse-fst-3" />
-
-            <!-- Header -->
-            <label for="collapse-fst-3" class="collapse-title btn btn-ghost text-xl text-left w-full rounded-t-xl">
-                Lantai 3 FST
-            </label>
-
-            <!-- Isi Dropdown -->
-            <div class="collapse-content list bg-base-100 px-4 pb-4 rounded-b-xl">
-
-                <li class="list-row">
-                    <i class="fi fi-br-restroom-simple text-4xl"></i>
-                    <div>
-                        <div>Toilet </div>
-                        <div class="text-xs font-semibold opacity-60">Ujung Kanan Lantai 1</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
-
-                <li class="list-row">
-                    <i class="fi fi-rr-mosque-moon text-4xl"></i>
-                    <div>
-                        <div>Musholla</div>
-                        <div class="text-xs font-semibold opacity-60">Ujung Kanan Lantai 1</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
-
-                <li class="list-row">
-                    <i class="fi fi-rc-books text-4xl"></i>
-                    <div>
-                        <div>R 4.01</div>
-                        <div class="text-xs font-semibold opacity-60">Perpustakaan Fakultas Sains & Teknologi</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
-
-
-                <li class="list-row">
-                    <i class="fi fi-rr-user-crown text-4xl"></i>
-                    <div>
-                        <div>Ketua Lab FST</div>
-                        <div class="text-xs font-semibold opacity-60">Ruangan Ketua Lab FST</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
-
-                <li class="list-row">
-                    <i class="fi fi-sr-admin-alt text-4xl"></i>
-                    <div>
-                        <div>Ruang TU</div>
-                        <div class="text-xs font-semibold opacity-60">Ruangan Tata Usaha</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
-
-                <li class="list-row">
-                    <i class="fi fi-rr-user-crown text-4xl"></i>
-                    <div>
-                        <div>Ketua Lab FST</div>
-                        <div class="text-xs font-semibold opacity-60">Ruangan Ketua Lab FST</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
-
-                <li class="list-row">
-                    <i class="fi fi-rr-user-crown text-4xl"></i>
-                    <div>
-                        <div>admin</div>
-                        <div class="text-xs font-semibold opacity-60">Ruangan Ketua Lab FST</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
-
-
-            </div>
-        </div>
     </div>
-
     <div class="mt-8 w-full max-w-full px-4">
+<<<<<<< HEAD
         <div class="collapse bg-base-100 shadow-md rounded-xl">
             <input type="checkbox" class="peer hidden" id="collapse-fst4" />
 
@@ -494,74 +292,31 @@
                         </svg>
                     </button>
                 </li>
+=======
+>>>>>>> a6930a1 (update page & finishing)
 
 
-                <li class="list-row">
-                    <i class="fi fi-rr-user-crown text-4xl"></i>
-                    <div>
-                        <div>Ketua Lab FST</div>
-                        <div class="text-xs font-semibold opacity-60">Ruangan Ketua Lab FST</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
-
-                <li class="list-row">
-                    <i class="fi fi-sr-admin-alt text-4xl"></i>
-                    <div>
-                        <div>Ruang TU</div>
-                        <div class="text-xs font-semibold opacity-60">Ruangan Tata Usaha</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
-
-                <li class="list-row">
-                    <i class="fi fi-rr-user-crown text-4xl"></i>
-                    <div>
-                        <div>Ketua Lab FST</div>
-                        <div class="text-xs font-semibold opacity-60">Ruangan Ketua Lab FST</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
-
-                <li class="list-row">
-                    <i class="fi fi-rr-user-crown text-4xl"></i>
-                    <div>
-                        <div>admin</div>
-                        <div class="text-xs font-semibold opacity-60">Ruangan Ketua Lab FST</div>
-                    </div>
-                    <button class="btn btn-square btn-ghost">
-                        <svg class="size-[1.2em]" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2" fill="none" stroke="currentColor">
-                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
-                            </g>
-                        </svg>
-                    </button>
-                </li>
-
-
-            </div>
-        </div>
     </div>
     <script src="../js/mapsGedung.js"></script>
+    <script>
+        function searchGedung() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let rows = document.querySelectorAll("#gedungTable li");
 
+            rows.forEach(function(row) {
+                let namaEl = row.querySelector(".nama_gedung");
+                if (!namaEl) return; // skip kalau tidak ada
+
+                let nama = namaEl.textContent.toLowerCase();    
+
+                if (nama.includes(input)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+    </script>
 
 
 </body>

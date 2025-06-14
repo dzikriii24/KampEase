@@ -138,7 +138,7 @@ $result = $conn->query($sql);
             <article class="overflow-hidden rounded-lg border border-gray-100 bg-white shadow-sm transition hover:shadow-md" id="gedungTable">
                 <img
                     alt="<?= htmlspecialchars($row['nama_gedung']) ?>"
-                    src="<?= htmlspecialchars($row['foto']) ?>"
+                    src="<?= htmlspecialchars(!empty($row['foto']) ? $row['foto'] : '../images/gedung3d.png') ?>"
                     class="h-56 w-full object-cover" />
 
                 <div class="p-4 sm:p-6">

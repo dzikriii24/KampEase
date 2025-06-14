@@ -1,3 +1,15 @@
+<?php
+// koneksi ke database
+$conn = new mysqli("localhost", "root", "", "kamp_ease");
+
+// ambil id produk dari URL
+$sql = "SELECT COUNT(*) AS total_komentar FROM komentar";
+$result = mysqli_query($conn, $sql);
+$data = mysqli_fetch_assoc($result);
+$totalKomentar = $data['total_komentar'];
+?>
+
+
 <!DOCTYPE html>
 <html lang="en" class="bg-[#F3F4F6]">
 
@@ -32,32 +44,24 @@
     <link rel="stylesheet" href="../css/hover.css">
 
     <!--logo web-->
-    <link rel="icon" type="image/ico" href="/KampEase/images/log2.png"/>
+    <link rel="icon" type="image/ico" href="/KampEase/images/log2.png" />
 </head>
 
 
 <body class="min-h-screen flex flex-col items-center justify-start mx-auto">
-    <div class="navbar bg-base-100 shadow-sm">
+    <div class="navbar bg-[#FFFFFF] shadow-sm">
         <div class="navbar-start">
-            
+
         </div>
         <div class="navbar-center">
-            <a class="btn btn-ghost text-xl">daisyUI</a>
+            <p class="poppins-semibold text-xl">Lihat <?= $totalKomentar + 2 ?> Komentar</p>
         </div>
         <div class="navbar-end">
-            <button class="btn btn-ghost btn-circle">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
-            </button>
-            <button class="btn btn-ghost btn-circle">
-                <div class="indicator">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                    </svg>
-                    <span class="badge badge-xs badge-primary indicator-item"></span>
+            <div class="avatar">
+                <div class="w-14 rounded">
+                    <img src="../images/log2.png" />
                 </div>
-            </button>
+            </div>
         </div>
     </div>
     <a href="javascript:history.back()"
@@ -160,9 +164,9 @@
                     UI-nya simpel, fiturnya lengkap, dan pastinya berguna banget buat navigasi di sekitar kampus.
                 </p>
             </div>
-             <div class="text-xs text-gray-400 mt-2">
-                    01 Jun 2025 10:30
-                </div>
+            <div class="text-xs text-gray-400 mt-2">
+                01 Jun 2025 10:30
+            </div>
         </article>
 
         <article class="max-w-xl p-6 bg-white rounded-2xl shadow-md border border-[#E0E0E0]">
@@ -208,8 +212,8 @@
                 </p>
             </div>
             <div class="text-xs text-gray-400 mt-2">
-                    01 Jun 2025 10:50
-                </div>
+                01 Jun 2025 10:50
+            </div>
         </article>
 
     </div>
