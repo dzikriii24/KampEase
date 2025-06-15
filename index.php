@@ -138,7 +138,7 @@
 
     <!-- FITUR -->
     <div class="mt-10 poppins-bold grid grid-cols-4 sm:grid-cols-3 lg:grid-cols-4 sm:px- lg:px-20 sm:mt-20 mt-10 justify-self-center gap-4 sm:gap-[50px] items-center justify-center">
-        <a href="">
+        <a href="php/wifi.php">
             <article class="card overflow-hidden rounded-xl bg-white w-20 sm:w-36">
                 <img
                     alt=""
