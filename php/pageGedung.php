@@ -153,7 +153,7 @@ $result = $conn->query($sql);
                     </p>
 
                     <a href="<?= $row['link_detail'] ?>" class="group mt-4 inline-flex items-center gap-1 text-sm font-medium text-blue-600 hover:text-blue-800">
-                        Lihat Detail Gedung
+                        Lihat Detail Parkiran
                         <span aria-hidden="true" class="transition-transform group-hover:translate-x-1">&rarr;</span>
                     </a>
                 </div>

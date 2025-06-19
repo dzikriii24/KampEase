@@ -80,7 +80,7 @@ $result = $conn->query($sql);
                         </a>
                     </div>
                 </div>
-                <img src="../images/gedung3d.png" alt="" class="absolute top-10 -z-1 sm:z-0 sm:top-0 sm:relative">
+                <img src="../images/wifi.png" alt="" class="absolute top-10 -z-1 sm:z-0 sm:top-0 sm:relative">
             </div>
         </section>
     </div>
