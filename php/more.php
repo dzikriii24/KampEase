@@ -213,7 +213,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
                 <div class="sm:flex sm:items-end sm:justify-end px-4 pb-4 sm:pb-6">
                     <a
-                        href="#"
+                        href="../php/wifi.php"
                         class="inline-block bg-yellow-300 px-5 py-3 text-center text-xs font-bold text-gray-900 transition hover:bg-yellow-400 rounded-lg">
                         Telusuri Gedung
                     </a>
@@ -233,7 +233,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             <!-- Konten -->
             <div class="flex flex-1 flex-col justify-between bg-white/70 sm:bg-white sm:rounded-none rounded-2xl sm:rounded-r-2xl">
                 <div class="border-l border-gray-900/10 p-4 sm:p-6">
-                    <a href="#">
+                    <a href="../php/areaParkir.php">
                         <h3 class="font-bold text-gray-900 uppercase">
                             Area Parkir
                         </h3>
@@ -246,7 +246,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 
                 <div class="sm:flex sm:items-end sm:justify-end px-4 pb-4 sm:pb-6">
                     <a
-                        href="#"
+                        href="../php/areaParkir.phpa"
                         class="inline-block bg-yellow-300 px-5 py-3 text-center text-xs font-bold text-gray-900 transition hover:bg-yellow-400 rounded-lg">
                         Telusuri Gedung
                     </a>

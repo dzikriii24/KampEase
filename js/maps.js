@@ -5,10 +5,10 @@
         // Tracestrack Topo Tile
 
         // Menggunakan Stadia Satellite View
-        var Stadia_AlidadeSatellite = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_satellite/{z}/{x}/{y}{r}.jpg', {
-            minZoom: 0,
+        var Stadia_AlidadeSatellite = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+            attribution: 'KampEase2025',
+            subdomains: 'abcd',
             maxZoom: 20,
-            attribution: '&copy; CNES, Distribution Airbus DS, © Airbus DS, © PlanetObserver (Contains Copernicus Data) | &copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
             ext: 'jpg'
         }).addTo(map);
 
@@ -113,7 +113,7 @@
         // FUNGSI YANG DIGUNAKAN KALO TABELNYA ADA JAM BUKA DAN JAM TUTUP
 
         function renderInfoPanelBiasa(data, type = "default") {
-            const defaultFoto ="https://i.pinimg.com/736x/f5/5d/5e/f55d5e6e343744170be0033eaf8fa304.jpg";
+            const defaultFoto = "https://i.pinimg.com/736x/f5/5d/5e/f55d5e6e343744170be0033eaf8fa304.jpg";
             return `
               <button onclick="foto.showModal()">
             <img  style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"
@@ -185,9 +185,9 @@
         `
         }
 
-        
+
         function renderInfoPanelJam(data, type = "default") {
-            
+
             const defaultFoto = "https://i.pinimg.com/736x/ca/d0/dd/cad0ddcaa27baf0c8c5b1f246806c06f.jpg"
             return `
         <button onclick="foto.showModal()">

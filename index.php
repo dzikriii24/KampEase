@@ -167,7 +167,7 @@
                 </div>
             </article>
         </a>
-        <a href="">
+        <a href="php/areaParkir.php">
             <article class="card overflow-hidden rounded-xl bg-white w-20 sm:w-36">
                 <img
                     alt=""
